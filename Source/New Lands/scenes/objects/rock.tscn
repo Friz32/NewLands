@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://b1pducewsafvv" path="res://textures/objects/rock.svg" id="1_0fnav"]
 [ext_resource type="Script" path="res://scripts/objects/rock.gd" id="1_114xe"]
-[ext_resource type="Script" path="res://scripts/hitbox.gd" id="2_ljyc0"]
-[ext_resource type="Script" path="res://scripts/health_component.gd" id="3_b6b6l"]
+[ext_resource type="Script" path="res://scripts/components/hitbox.gd" id="2_ljyc0"]
+[ext_resource type="Script" path="res://scripts/components/health_component.gd" id="3_b6b6l"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_khgl6"]
 radius = 5.0
