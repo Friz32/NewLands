@@ -1,0 +1,207 @@
+[gd_scene load_steps=37 format=3 uid="uid://bwy2j6k4jtkvi"]
+
+[ext_resource type="Script" path="res://assets/2d/top_down_controller/player.gd" id="1_annt5"]
+[ext_resource type="Texture2D" uid="uid://b53qxelnmlfuf" path="res://textures/entity/player.svg" id="2_mo8e1"]
+[ext_resource type="PackedScene" uid="uid://cemiudfijoew8" path="res://scenes/inventory.tscn" id="3_qp54j"]
+[ext_resource type="Script" path="res://scripts/components/hurtbox.gd" id="4_ypc12"]
+[ext_resource type="Texture2D" uid="uid://7cifpl0i5ffh" path="res://textures/swipe.png" id="6_tvta1"]
+[ext_resource type="Script" path="res://scripts/chunks/chunk_loading_position_2d.gd" id="7_uoutt"]
+[ext_resource type="AudioStream" uid="uid://bhcvaywas4vcc" path="res://audio/effects/attack.wav" id="8_fua0n"]
+[ext_resource type="Script" path="res://scripts/components/entity_component.gd" id="9_b5lik"]
+[ext_resource type="PackedScene" uid="uid://bpxasq5kcynk7" path="res://assets/ui/scenes/game_menu.tscn" id="9_rbxok"]
+[ext_resource type="PackedScene" uid="uid://bvwquhdf4o14m" path="res://assets/2d/circle_shadow/circle_shadow.tscn" id="11_hlu4j"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e5b8o"]
+radius = 4.00001
+height = 24.0
+
+[sub_resource type="Animation" id="Animation_5jj2f"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_vn7ax"]
+resource_name = "idle_down"
+length = 0.1
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_h7aug"]
+resource_name = "idle_left"
+length = 0.1
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_upbsl"]
+resource_name = "idle_right"
+length = 0.1
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_wc3ya"]
+resource_name = "idle_up"
+length = 0.1
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_vjfg6"]
+resource_name = "move_down"
+length = 0.6
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_frqgq"]
+resource_name = "move_left"
+length = 0.6
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_6vp8n"]
+resource_name = "move_right"
+length = 0.6
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_wwd5v"]
+resource_name = "move_up"
+length = 0.6
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_btwyg"]
+_data = {
+"RESET": SubResource("Animation_5jj2f"),
+"idle_down": SubResource("Animation_vn7ax"),
+"idle_left": SubResource("Animation_h7aug"),
+"idle_right": SubResource("Animation_upbsl"),
+"idle_up": SubResource("Animation_wc3ya"),
+"move_down": SubResource("Animation_vjfg6"),
+"move_left": SubResource("Animation_frqgq"),
+"move_right": SubResource("Animation_6vp8n"),
+"move_up": SubResource("Animation_wwd5v")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_avr73"]
+animation = &"idle_up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wgs2p"]
+animation = &"idle_down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g0jcr"]
+animation = &"idle_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wfqm8"]
+animation = &"idle_left"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_5x6b3"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_avr73")
+blend_point_0/pos = Vector2(0, -1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_wgs2p")
+blend_point_1/pos = Vector2(0, 1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_g0jcr")
+blend_point_2/pos = Vector2(0.9, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_wfqm8")
+blend_point_3/pos = Vector2(-0.9, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aijn1"]
+animation = &"move_up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3b0xu"]
+animation = &"move_down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4mw8g"]
+animation = &"move_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eswa5"]
+animation = &"move_right"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_eqfym"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_aijn1")
+blend_point_0/pos = Vector2(0, -1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_3b0xu")
+blend_point_1/pos = Vector2(0, 1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_4mw8g")
+blend_point_2/pos = Vector2(-0.9, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_eswa5")
+blend_point_3/pos = Vector2(0.9, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w0wdm"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1gm47"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_efb2h"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lro71"]
+states/Start/position = Vector2(198, 100)
+states/idle/node = SubResource("AnimationNodeBlendSpace2D_5x6b3")
+states/idle/position = Vector2(514, 43)
+states/move/node = SubResource("AnimationNodeBlendSpace2D_eqfym")
+states/move/position = Vector2(514, 146)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_w0wdm"), "idle", "move", SubResource("AnimationNodeStateMachineTransition_1gm47"), "move", "idle", SubResource("AnimationNodeStateMachineTransition_efb2h")]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e85kc"]
+size = Vector2(24, 40)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+motion_mode = 1
+script = ExtResource("1_annt5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_e5b8o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -32)
+texture = ExtResource("2_mo8e1")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+position = Vector2(0, -24)
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_btwyg")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_lro71")
+anim_player = NodePath("../AnimationPlayer")
+parameters/idle/blend_position = Vector2(1, 0)
+parameters/move/blend_position = Vector2(1, 0)
+
+[node name="Inventory" parent="." instance=ExtResource("3_qp54j")]
+
+[node name="HurtboxPivot" type="Node2D" parent="."]
+visible = false
+position = Vector2(0, -16)
+
+[node name="Hurtbox" type="Area2D" parent="HurtboxPivot"]
+unique_name_in_owner = true
+position = Vector2(28, 0)
+script = ExtResource("4_ypc12")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxPivot/Hurtbox"]
+shape = SubResource("RectangleShape2D_e85kc")
+
+[node name="Sprite2D" type="Sprite2D" parent="HurtboxPivot/Hurtbox"]
+position = Vector2(-7, 0)
+scale = Vector2(2.2, 2.2)
+texture = ExtResource("6_tvta1")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="ChunkLoadingPosition2D" type="Node2D" parent="."]
+script = ExtResource("7_uoutt")
+
+[node name="AudioAttack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_fua0n")
+
+[node name="GameMenu" parent="." instance=ExtResource("9_rbxok")]
+visible = false
+
+[node name="EntityComponent" type="Node" parent="."]
+script = ExtResource("9_b5lik")
+
+[node name="CircleShadow" parent="." instance=ExtResource("11_hlu4j")]
+radius = 14.0
+y_scale = 0.3
+alpha = 0.13

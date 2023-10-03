@@ -1,0 +1,7 @@
+audio_play_3d
+audio_pause
+audio_pause_all
+audio_resume
+audio_resume_all
+audio_is_playing
+audio_is_paused

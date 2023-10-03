@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpxasq5kcynk7"]
+
+[ext_resource type="Script" path="res://assets/ui/scripts/game_menu.gd" id="1_tuyne"]
+[ext_resource type="Shader" path="res://assets/ui/blur.gdshader" id="2_omj7f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r5bjd"]
+shader = ExtResource("2_omj7f")
+shader_parameter/strength = 2
+
+[node name="GameMenu" type="CanvasLayer" groups=["screen"]]
+process_mode = 3
+script = ExtResource("1_tuyne")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Background" type="ColorRect" parent="Control"]
+material = SubResource("ShaderMaterial_r5bjd")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.392157)
+metadata/_edit_lock_ = true
+
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/CenterContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="ReturnToGame" type="Button" parent="Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Return to Game"
+
+[node name="Control" type="Control" parent="Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Settings" type="Button" parent="Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+
+[node name="Control3" type="Control" parent="Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MainMenu" type="Button" parent="Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="QuitGame" type="Button" parent="Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit Game"
+
+[connection signal="pressed" from="Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ReturnToGame" to="." method="on_return_to_game_pressed"]
+[connection signal="pressed" from="Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MainMenu" to="." method="on_main_menu_pressed"]
+[connection signal="pressed" from="Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/QuitGame" to="." method="on_quit_pressed"]

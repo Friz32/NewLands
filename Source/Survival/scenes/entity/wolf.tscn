@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://11uf5lwkr6wd"]
+
+[ext_resource type="Script" path="res://scripts/entity/bat.gd" id="1_pt4nx"]
+[ext_resource type="Texture2D" uid="uid://crw5uy1k2jxg1" path="res://textures/entity/wolf.svg" id="2_80pvj"]
+[ext_resource type="PackedScene" uid="uid://bfww4kht8l2rn" path="res://scenes/entity_ai_component_2d.tscn" id="4_cdv8t"]
+[ext_resource type="Script" path="res://scripts/components/hitbox.gd" id="4_fabro"]
+[ext_resource type="Script" path="res://scripts/components/health_component.gd" id="5_42tj5"]
+[ext_resource type="Script" path="res://scripts/components/entity_component.gd" id="6_o40ol"]
+[ext_resource type="PackedScene" uid="uid://bvwquhdf4o14m" path="res://assets/2d/circle_shadow/circle_shadow.tscn" id="7_gierv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_an50m"]
+radius = 326.098
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ilod1"]
+radius = 5.0
+height = 38.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_64365"]
+size = Vector2(40, 18)
+
+[node name="Wolf" type="CharacterBody2D"]
+script = ExtResource("1_pt4nx")
+
+[node name="ChaseArea" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChaseArea"]
+shape = SubResource("CircleShape2D_an50m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_ilod1")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -32)
+texture = ExtResource("2_80pvj")
+
+[node name="EntityAIComponent2D" parent="." node_paths=PackedStringArray("nav_agent", "chase_area") instance=ExtResource("4_cdv8t")]
+nav_agent = NodePath("../NavigationAgent2D")
+chase_area = NodePath("../ChaseArea")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+visible = false
+position = Vector2(0, -14)
+script = ExtResource("4_fabro")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_64365")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("5_42tj5")
+max_health = 70.0
+health = 70.0
+
+[node name="EntityComponent" type="Node" parent="."]
+script = ExtResource("6_o40ol")
+max_magic = 0.0
+magic = 0.0
+endurance = 5.0
+
+[node name="CircleShadow" parent="." instance=ExtResource("7_gierv")]
+radius = 17.0
+y_scale = 0.29
+alpha = 0.13
+
+[connection signal="died" from="HealthComponent" to="." method="on_died"]

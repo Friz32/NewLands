@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfww4kht8l2rn"]
+
+[ext_resource type="Script" path="res://scripts/components/entity_ai_component_2d.gd" id="1_ekat4"]
+[ext_resource type="Script" path="res://addons/qcore/scripts/state_machine.gd" id="2_nnpw6"]
+
+[node name="EntityAIComponent2D" type="Node2D"]
+script = ExtResource("1_ekat4")
+
+[node name="QCStateMachine" type="Node" parent="."]
+script = ExtResource("2_nnpw6")
+
+[node name="IdleTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="UpdateTarget" type="Timer" parent="."]
+
+[connection signal="timeout" from="IdleTimer" to="." method="on_idle_timer_timeout"]
+[connection signal="timeout" from="UpdateTarget" to="." method="on_update_target_timeout"]

@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://dfc7oadivbc11"]
+
+[ext_resource type="Texture2D" uid="uid://b1pducewsafvv" path="res://textures/objects/rock.svg" id="1_0fnav"]
+[ext_resource type="Script" path="res://scripts/objects/rock.gd" id="1_114xe"]
+[ext_resource type="Script" path="res://scripts/hitbox.gd" id="2_ljyc0"]
+[ext_resource type="Script" path="res://scripts/health_component.gd" id="3_b6b6l"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_khgl6"]
+radius = 5.0
+height = 32.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_avpq0"]
+size = Vector2(34, 26)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ptvme"]
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 98, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 80.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 2.0
+scale_max = 2.0
+color = Color(0.811765, 0.811765, 0.811765, 1)
+
+[node name="Rock" type="StaticBody2D"]
+script = ExtResource("1_114xe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -32)
+texture = ExtResource("1_0fnav")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -9)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_khgl6")
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+visible = false
+position = Vector2(0, -17)
+script = ExtResource("2_ljyc0")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_avpq0")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("3_b6b6l")
+max_health = 200.0
+health = 200.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, -18)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_ptvme")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+
+[connection signal="damaged" from="HealthComponent" to="." method="on_damaged"]
+[connection signal="died" from="HealthComponent" to="." method="on_died"]

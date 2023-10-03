@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://x5j38lwk04ij"]
+
+[ext_resource type="Script" path="res://scripts/chunks/chunk_manager_2d.gd" id="1_nih7p"]
+
+[node name="ChunkManager2D" type="Node2D" groups=["chunk_manager"]]
+y_sort_enabled = true
+script = ExtResource("1_nih7p")
+
+[node name="UpdateChunks" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="UpdateChunks" to="." method="_on_update_chunks_timeout"]

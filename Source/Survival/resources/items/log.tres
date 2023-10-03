@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://ddbpr2uelk0xv"]
+
+[ext_resource type="Texture2D" uid="uid://c7ylwecu3a134" path="res://textures/items/raw_wood.png" id="1_l2kls"]
+[ext_resource type="Script" path="res://scripts/inventory/inv_item.gd" id="1_tovjo"]
+
+[resource]
+script = ExtResource("1_tovjo")
+name = "Log"
+icon = ExtResource("1_l2kls")
+weight = 5.0

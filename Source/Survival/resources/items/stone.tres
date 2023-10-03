@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://dtgbgwu4gcqvn"]
+
+[ext_resource type="Texture2D" uid="uid://divsmvb7evgpp" path="res://textures/items/ore_stone.png" id="1_m2ayq"]
+[ext_resource type="Script" path="res://scripts/inventory/inv_item.gd" id="1_ofjp8"]
+
+[resource]
+script = ExtResource("1_ofjp8")
+name = "Stone"
+icon = ExtResource("1_m2ayq")
+weight = 10.0

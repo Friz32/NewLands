@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=3 uid="uid://cxwfyoyh1pl84"]
+
+[ext_resource type="Script" path="res://scripts/objects/tree.gd" id="1_qfnud"]
+[ext_resource type="Texture2D" uid="uid://c7x7yx0hnnm3s" path="res://textures/objects/tree.svg" id="2_en47w"]
+[ext_resource type="Script" path="res://scripts/hitbox.gd" id="3_g8oi4"]
+[ext_resource type="Script" path="res://scripts/health_component.gd" id="4_o30va"]
+[ext_resource type="PackedScene" uid="uid://bvwquhdf4o14m" path="res://assets/2d/circle_shadow/circle_shadow.tscn" id="5_amie1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ftws8"]
+radius = 6.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rdux8"]
+size = Vector2(32, 40)
+
+[sub_resource type="Animation" id="Animation_8n6xx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_vycvn"]
+resource_name = "damaged"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.139626, 0.174533, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oj7yc"]
+_data = {
+"RESET": SubResource("Animation_8n6xx"),
+"damaged": SubResource("Animation_vycvn")
+}
+
+[node name="Tree" type="StaticBody2D"]
+script = ExtResource("1_qfnud")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_en47w")
+offset = Vector2(0, -70)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -7)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_ftws8")
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+visible = false
+script = ExtResource("3_g8oi4")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -20)
+shape = SubResource("RectangleShape2D_rdux8")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("4_o30va")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_oj7yc")
+}
+
+[node name="CircleShadow" parent="." instance=ExtResource("5_amie1")]
+radius = 44.0
+alpha = 0.09
+
+[connection signal="damaged" from="HealthComponent" to="." method="on_damaged"]
+[connection signal="died" from="HealthComponent" to="." method="on_died"]
