@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bwy2j6k4jtkvi"]
+[gd_scene load_steps=42 format=3 uid="uid://bwy2j6k4jtkvi"]
 
 [ext_resource type="Script" path="res://assets/2d/top_down_controller/player.gd" id="1_annt5"]
 [ext_resource type="Texture2D" uid="uid://b53qxelnmlfuf" path="res://textures/entity/player.svg" id="2_mo8e1"]
@@ -7,9 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://7cifpl0i5ffh" path="res://textures/swipe.png" id="6_tvta1"]
 [ext_resource type="Script" path="res://scripts/chunks/chunk_loading_position_2d.gd" id="7_uoutt"]
 [ext_resource type="AudioStream" uid="uid://bhcvaywas4vcc" path="res://audio/effects/attack.wav" id="8_fua0n"]
+[ext_resource type="AudioStream" uid="uid://cu8plxuhyvqoy" path="res://audio/effects/hurt.wav" id="8_l78mk"]
 [ext_resource type="Script" path="res://scripts/components/entity_component.gd" id="9_b5lik"]
 [ext_resource type="PackedScene" uid="uid://bpxasq5kcynk7" path="res://assets/ui/scenes/game_menu.tscn" id="9_rbxok"]
 [ext_resource type="PackedScene" uid="uid://bvwquhdf4o14m" path="res://assets/2d/circle_shadow/circle_shadow.tscn" id="11_hlu4j"]
+[ext_resource type="Script" path="res://scripts/components/hitbox.gd" id="11_jdgfg"]
+[ext_resource type="Script" path="res://scripts/components/health_component.gd" id="12_ojj6y"]
+[ext_resource type="PackedScene" uid="uid://cq1evrgcend1a" path="res://scenes/hud.tscn" id="14_0833t"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e5b8o"]
 radius = 4.00001
@@ -135,6 +139,9 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e85kc"]
 size = Vector2(24, 40)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kudav"]
+size = Vector2(28, 36)
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 motion_mode = 1
 script = ExtResource("1_annt5")
@@ -166,8 +173,6 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/idle/blend_position = Vector2(1, 0)
 parameters/move/blend_position = Vector2(1, 0)
 
-[node name="Inventory" parent="." instance=ExtResource("3_qp54j")]
-
 [node name="HurtboxPivot" type="Node2D" parent="."]
 visible = false
 position = Vector2(0, -16)
@@ -186,7 +191,6 @@ scale = Vector2(2.2, 2.2)
 texture = ExtResource("6_tvta1")
 
 [node name="AttackCooldown" type="Timer" parent="."]
-wait_time = 0.5
 one_shot = true
 
 [node name="ChunkLoadingPosition2D" type="Node2D" parent="."]
@@ -194,6 +198,13 @@ script = ExtResource("7_uoutt")
 
 [node name="AudioAttack" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_fua0n")
+
+[node name="AudioHurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_l78mk")
+
+[node name="HUD" parent="." instance=ExtResource("14_0833t")]
+
+[node name="Inventory" parent="." instance=ExtResource("3_qp54j")]
 
 [node name="GameMenu" parent="." instance=ExtResource("9_rbxok")]
 visible = false
@@ -205,3 +216,17 @@ script = ExtResource("9_b5lik")
 radius = 14.0
 y_scale = 0.3
 alpha = 0.13
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+position = Vector2(0, -18)
+script = ExtResource("11_jdgfg")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_kudav")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("12_ojj6y")
+
+[connection signal="damaged" from="HealthComponent" to="." method="on_damaged"]
+[connection signal="died" from="HealthComponent" to="." method="on_died"]

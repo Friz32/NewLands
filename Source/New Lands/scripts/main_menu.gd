@@ -2,6 +2,8 @@ extends Control
 
 func generate(x, y):
 	const CHUNK_SIZE = 2048
+	const MIN_WOLF_COUNT = 5
+	const MAX_WOLF_COUNT = 12
 	
 	var root = Node2D.new()
 	root.name = "Node2D"
@@ -63,6 +65,12 @@ func generate(x, y):
 			tree.position = Vector2(ax, ay) + offset
 			root.add_child(tree)
 			tree.owner = root
+	
+	for i in randf_range(MIN_WOLF_COUNT, MAX_WOLF_COUNT):
+		var node = Res["scn_wolf"].instantiate()
+		node.position = Vector2(randf_range(0, CHUNK_SIZE), randf_range(0, CHUNK_SIZE))
+		root.add_child(node)
+		node.owner = root
 	
 	seed(0)
 	

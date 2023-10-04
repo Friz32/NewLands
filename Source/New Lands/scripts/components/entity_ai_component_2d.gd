@@ -17,12 +17,15 @@ var wander_range_min := 20.0
 var wander_range_max := 100.0
 
 @export var idle_speed := 4.0
-@export var chase_speed := 8.0
+@export var chase_speed := 14.0
 @export var deceleration := 0.2
+@export var damage := 10.0
+@export var attack_distance := 32.0
 
 @onready var state_machine: QCStateMachine = $QCStateMachine
 @onready var idle_timer: Timer = $IdleTimer
 @onready var update_target: Timer = $UpdateTarget
+@onready var attack_timer: Timer = $AttackTimer
 
 var idle_state := QCState.new("idle")
 var wander_state := QCState.new("wander")
@@ -36,6 +39,7 @@ func _ready() -> void:
 	wander_state.enter = wander_enter
 	wander_state.physics_process = movement
 	chase_state.physics_process = movement
+	chase_state.process = chase_process
 	chase_state.enter = func():
 		idle_timer.stop()
 		update_target.start()
@@ -54,6 +58,11 @@ func idle_enter():
 
 func wander_enter():
 	nav_agent.target_position = global_position + Vector2.from_angle(randf_range(0, TAU)) * randf_range(wander_range_min, wander_range_max)
+
+func chase_process(delta):
+	if global_position.distance_to(target.global_position) < attack_distance && attack_timer.is_stopped():
+		attack_timer.start()
+		target.get_node("HealthComponent").health -= damage
 
 func movement(delta):
 	var parent = get_parent()

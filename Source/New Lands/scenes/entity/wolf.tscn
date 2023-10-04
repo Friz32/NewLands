@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://11uf5lwkr6wd"]
 
-[ext_resource type="Script" path="res://scripts/entity/bat.gd" id="1_pt4nx"]
+[ext_resource type="Script" path="res://scripts/entity/wolf.gd" id="1_oer20"]
 [ext_resource type="Texture2D" uid="uid://crw5uy1k2jxg1" path="res://textures/entity/wolf.svg" id="2_80pvj"]
 [ext_resource type="PackedScene" uid="uid://bfww4kht8l2rn" path="res://scenes/entity_ai_component_2d.tscn" id="4_cdv8t"]
 [ext_resource type="Script" path="res://scripts/components/hitbox.gd" id="4_fabro"]
@@ -19,7 +19,8 @@ height = 38.0
 size = Vector2(40, 18)
 
 [node name="Wolf" type="CharacterBody2D"]
-script = ExtResource("1_pt4nx")
+motion_mode = 1
+script = ExtResource("1_oer20")
 
 [node name="ChaseArea" type="Area2D" parent="."]
 visible = false
@@ -31,7 +32,6 @@ shape = SubResource("CircleShape2D_an50m")
 visible = false
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_ilod1")
-disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -32)
@@ -40,6 +40,7 @@ texture = ExtResource("2_80pvj")
 [node name="EntityAIComponent2D" parent="." node_paths=PackedStringArray("nav_agent", "chase_area") instance=ExtResource("4_cdv8t")]
 nav_agent = NodePath("../NavigationAgent2D")
 chase_area = NodePath("../ChaseArea")
+damage = 20.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 

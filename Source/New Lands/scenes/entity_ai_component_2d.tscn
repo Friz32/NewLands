@@ -14,5 +14,8 @@ one_shot = true
 
 [node name="UpdateTarget" type="Timer" parent="."]
 
+[node name="AttackTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="IdleTimer" to="." method="on_idle_timer_timeout"]
 [connection signal="timeout" from="UpdateTarget" to="." method="on_update_target_timeout"]

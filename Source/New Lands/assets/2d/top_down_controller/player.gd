@@ -10,11 +10,16 @@ extends CharacterBody2D
 @onready var attack_cooldown: Timer = $AttackCooldown
 @onready var hurtbox_pivot: Node2D = $HurtboxPivot
 @onready var audio_attack: AudioStreamPlayer = $AudioAttack
+@onready var audio_hurt: AudioStreamPlayer = $AudioHurt
+@onready var hud: CanvasLayer = $HUD
+@onready var health_component: HealthComponent = $HealthComponent
 
 func _ready() -> void:
 	hurtbox.monitoring = false
 	hurtbox_pivot.visible = true
 	hurtbox.get_node("Sprite2D").visible = false
+	
+	hud.get_node("%HealthBar").value = health_component.health / health_component.max_health * 100
 
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("attack") && attack_cooldown.is_stopped():
@@ -28,6 +33,9 @@ func _process(delta: float) -> void:
 		
 		hurtbox.monitoring = false
 		hurtbox.get_node("Sprite2D").visible = false
+	
+	hud.get_node("%AttackCooldown").visible = attack_cooldown.time_left > 0
+	hud.get_node("%AttackCooldown").value = attack_cooldown.time_left / attack_cooldown.wait_time * 100
 
 func _physics_process(delta):
 	var input = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").normalized()
@@ -42,3 +50,11 @@ func _physics_process(delta):
 		anim_tree["parameters/move/blend_position"] = input
 	else:
 		playback.travel("idle")
+
+func on_died() -> void:
+	get_tree().reload_current_scene()
+
+func on_damaged() -> void:
+	audio_hurt.play()
+	
+	hud.get_node("%HealthBar").value = health_component.health / health_component.max_health * 100

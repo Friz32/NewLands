@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://6nhd6mhc8dsh"]
+[gd_scene load_steps=12 format=3 uid="uid://6nhd6mhc8dsh"]
 
 [ext_resource type="Script" path="res://scripts/test.gd" id="1_lvjaf"]
 [ext_resource type="PackedScene" uid="uid://bwy2j6k4jtkvi" path="res://assets/2d/top_down_controller/player.tscn" id="1_yoh2i"]
 [ext_resource type="PackedScene" uid="uid://x5j38lwk04ij" path="res://scenes/chunk_manager_2d.tscn" id="3_11eq3"]
-[ext_resource type="PackedScene" uid="uid://11uf5lwkr6wd" path="res://scenes/entity/wolf.tscn" id="4_nc0tm"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_sa80g"]
 noise_type = 2
@@ -50,12 +49,6 @@ world = "user://world"
 
 [node name="Player" parent="ChunkManager2D" instance=ExtResource("1_yoh2i")]
 position = Vector2(962, 647)
-
-[node name="Wolf" parent="ChunkManager2D" instance=ExtResource("4_nc0tm")]
-position = Vector2(704, 1073)
-
-[node name="Wolf2" parent="ChunkManager2D" instance=ExtResource("4_nc0tm")]
-position = Vector2(496, 865)
 
 [node name="Trees" type="Sprite2D" parent="."]
 position = Vector2(88, -170)
