@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7cifpl0i5ffh"
-path="res://.godot/imported/swipe.png-e18015deb391c993c25a26e95fe020b0.ctex"
+uid="uid://b5jx6u3sfitsh"
+path="res://.godot/imported/berries_overlay.svg-b1a34f36f67f33558786c030137c1915.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/swipe.png"
-dest_files=["res://.godot/imported/swipe.png-e18015deb391c993c25a26e95fe020b0.ctex"]
+source_file="res://textures/objects/berries_overlay.svg"
+dest_files=["res://.godot/imported/berries_overlay.svg-b1a34f36f67f33558786c030137c1915.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://vu26sout4mux"]
+
+[ext_resource type="Script" path="res://scripts/objects/drop.gd" id="1_2bqdt"]
+[ext_resource type="Texture2D" uid="uid://drdo4hkaeidxc" path="res://textures/items/berries.svg" id="2_tiola"]
+[ext_resource type="Script" path="res://scripts/misc/interaction.gd" id="3_5b2ka"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_hriwm"]
+_surfaces = [{
+"2d": true,
+"aabb": AABB(-8, -8, 0, 16, 16, 0),
+"attribute_data": PackedByteArray(0, 0, 128, 63, 154, 153, 217, 61, 0, 0, 128, 63, 205, 204, 76, 63, 205, 204, 76, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 61, 102, 102, 102, 61, 0, 0, 128, 61, 0, 0, 160, 62, 0, 0, 0, 0, 0, 0, 80, 63, 0, 0, 0, 0),
+"format": 33558545,
+"index_count": 18,
+"index_data": PackedByteArray(7, 0, 0, 0, 1, 0, 1, 0, 2, 0, 3, 0, 3, 0, 4, 0, 5, 0, 5, 0, 6, 0, 7, 0, 7, 0, 1, 0, 3, 0, 3, 0, 5, 0, 7, 0),
+"primitive": 3,
+"vertex_count": 8,
+"vertex_data": PackedByteArray(0, 0, 0, 65, 154, 153, 201, 192, 0, 0, 0, 65, 154, 153, 153, 64, 154, 153, 153, 64, 0, 0, 0, 65, 0, 0, 0, 193, 0, 0, 0, 65, 0, 0, 0, 193, 0, 0, 224, 192, 51, 51, 227, 192, 0, 0, 224, 192, 0, 0, 64, 192, 0, 0, 0, 193, 0, 0, 160, 64, 0, 0, 0, 193)
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rfbds"]
+
+[node name="Drop" type="Node2D"]
+script = ExtResource("1_2bqdt")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+mesh = SubResource("ArrayMesh_hriwm")
+texture = ExtResource("2_tiola")
+
+[node name="Interaction" type="Area2D" parent="."]
+visible = false
+script = ExtResource("3_5b2ka")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
+shape = SubResource("RectangleShape2D_rfbds")
+
+[connection signal="interact" from="Interaction" to="." method="on_interact"]

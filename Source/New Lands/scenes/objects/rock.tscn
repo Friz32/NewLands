@@ -48,8 +48,6 @@ shape = SubResource("RectangleShape2D_avpq0")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("3_b6b6l")
-max_health = 200.0
-health = 200.0
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(0, -18)

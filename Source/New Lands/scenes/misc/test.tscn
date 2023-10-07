@@ -1,8 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://6nhd6mhc8dsh"]
+[gd_scene load_steps=17 format=3 uid="uid://6nhd6mhc8dsh"]
 
-[ext_resource type="Script" path="res://scripts/test.gd" id="1_lvjaf"]
-[ext_resource type="PackedScene" uid="uid://bwy2j6k4jtkvi" path="res://assets/2d/top_down_controller/player.tscn" id="1_yoh2i"]
-[ext_resource type="PackedScene" uid="uid://x5j38lwk04ij" path="res://scenes/chunk_manager_2d.tscn" id="3_11eq3"]
+[ext_resource type="Script" path="res://scripts/misc/test.gd" id="1_lvjaf"]
+[ext_resource type="PackedScene" uid="uid://bwy2j6k4jtkvi" path="res://scenes/misc/player.tscn" id="1_yoh2i"]
+[ext_resource type="PackedScene" uid="uid://x5j38lwk04ij" path="res://scenes/misc/chunk_manager_2d.tscn" id="3_11eq3"]
+[ext_resource type="PackedScene" uid="uid://dg2x8mol62cj0" path="res://scenes/objects/berry_bush.tscn" id="4_trx5a"]
+[ext_resource type="Resource" uid="uid://bgcxv5dmm2tq1" path="res://resources/items/heal_potion.tres" id="5_ilnka"]
+[ext_resource type="PackedScene" uid="uid://cxwfyoyh1pl84" path="res://scenes/objects/tree.tscn" id="5_vufbc"]
+[ext_resource type="PackedScene" uid="uid://vu26sout4mux" path="res://scenes/objects/drop.tscn" id="6_dux1d"]
+[ext_resource type="Resource" uid="uid://dtgbgwu4gcqvn" path="res://resources/items/stone.tres" id="7_5qv1f"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_sa80g"]
 noise_type = 2
@@ -47,8 +52,22 @@ metadata/_edit_lock_ = true
 [node name="ChunkManager2D" parent="." instance=ExtResource("3_11eq3")]
 world = "user://world"
 
+[node name="Drop" parent="ChunkManager2D" instance=ExtResource("6_dux1d")]
+position = Vector2(877, 681)
+item = ExtResource("7_5qv1f")
+
+[node name="Drop2" parent="ChunkManager2D" instance=ExtResource("6_dux1d")]
+position = Vector2(898, 699)
+item = ExtResource("5_ilnka")
+
 [node name="Player" parent="ChunkManager2D" instance=ExtResource("1_yoh2i")]
 position = Vector2(962, 647)
+
+[node name="BerryBush" parent="ChunkManager2D" instance=ExtResource("4_trx5a")]
+position = Vector2(1017, 702)
+
+[node name="Tree" parent="ChunkManager2D" instance=ExtResource("5_vufbc")]
+position = Vector2(1050, 679)
 
 [node name="Trees" type="Sprite2D" parent="."]
 position = Vector2(88, -170)

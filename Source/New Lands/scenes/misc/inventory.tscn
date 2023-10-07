@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://cemiudfijoew8"]
 
 [ext_resource type="Script" path="res://scripts/inventory/inventory.gd" id="1_vut65"]
-[ext_resource type="StyleBox" uid="uid://citga5lg6df5w" path="res://resources/panel.tres" id="2_wywac"]
-[ext_resource type="PackedScene" uid="uid://crgt2yy770ew" path="res://scenes/inv_item.tscn" id="3_a2v3m"]
+[ext_resource type="StyleBox" uid="uid://citga5lg6df5w" path="res://resources/misc/panel.tres" id="2_wywac"]
+[ext_resource type="PackedScene" uid="uid://crgt2yy770ew" path="res://scenes/misc/inv_item.tscn" id="3_a2v3m"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_in7le"]
 font_size = 12
@@ -35,12 +35,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 metadata/_edit_lock_ = true
 
 [node name="Control" type="Control" parent="Control/HBoxContainer"]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="Control/HBoxContainer"]
 custom_minimum_size = Vector2(200, 300)

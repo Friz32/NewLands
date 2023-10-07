@@ -1,2 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M13.088,5.084c1.065-.696,2.912-2.201,2.912-4.284V0H8V.8c0,2.083,1.847,3.588,2.912,4.284C5.548,5.908,1,12.63,1,18c0,3.309,2.691,6,6,6h10c3.309,0,6-2.691,6-6,0-5.37-4.548-12.092-9.912-12.916Z"/></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="Layer_1"
+   data-name="Layer 1"
+   viewBox="0 0 24 24"
+   width="512"
+   height="512"
+   version="1.1"
+   sodipodi:docname="sack.svg"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.51720994"
+     inkscape:cx="400.22433"
+     inkscape:cy="186.57801"
+     inkscape:window-width="1680"
+     inkscape:window-height="987"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Layer_1" />
+  <path
+     d="M13.088,5.084c1.065-.696,2.912-2.201,2.912-4.284V0H8V.8c0,2.083,1.847,3.588,2.912,4.284C5.548,5.908,1,12.63,1,18c0,3.309,2.691,6,6,6h10c3.309,0,6-2.691,6-6,0-5.37-4.548-12.092-9.912-12.916Z"
+     id="path1"
+     style="fill:#ffffff" />
+</svg>

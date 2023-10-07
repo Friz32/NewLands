@@ -7,7 +7,7 @@ func _ready() -> void:
 	visible = false
 	
 	var cnt = InvSystem.cnt
-	cnt.add_item(Res["item_log"])
+	cnt.add_item(Res["item_heal_potion"], 10)
 	cnt.add_item(Res["item_stone"])
 	
 	update()
@@ -32,9 +32,26 @@ func update():
 	
 	for item in cnt.items:
 		var node = Res["scn_inv_item"].instantiate()
-		node.get_node("%Name").text = "%s (%s)" % [item.name, cnt.items[item]]
+		
+		var name = ""
+		if cnt.items[item] > 1:
+			name = "%s (%s)" % [item.name, cnt.items[item]]
+		else:
+			name = item.name
+		
+		node.get_node("%Name").text = name
 		node.get_node("%Icon").texture = item.icon
-		node.tooltip_text = "Weight: %s (%s)" % [item.weight, item.weight * cnt.items[item]]
+		node.item = item
+		
+		var description = "%s\n%sWeight: %s (%s)" % [
+			item.name,
+			item.description + "\n" if item.description.length() > 0 else "",
+			item.weight,
+			item.weight * cnt.items[item]
+		]
+		
+		node.tooltip_text = description
 		items.add_child(node)
+		node.update()
 	
 	weight.text = "Weight: %s/100" % cnt.get_weight()

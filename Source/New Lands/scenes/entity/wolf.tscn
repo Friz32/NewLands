@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://scripts/entity/wolf.gd" id="1_oer20"]
 [ext_resource type="Texture2D" uid="uid://crw5uy1k2jxg1" path="res://textures/entity/wolf.svg" id="2_80pvj"]
-[ext_resource type="PackedScene" uid="uid://bfww4kht8l2rn" path="res://scenes/entity_ai_component_2d.tscn" id="4_cdv8t"]
+[ext_resource type="PackedScene" uid="uid://bfww4kht8l2rn" path="res://scenes/misc/entity_ai_component_2d.tscn" id="4_cdv8t"]
 [ext_resource type="Script" path="res://scripts/components/hitbox.gd" id="4_fabro"]
 [ext_resource type="Script" path="res://scripts/components/health_component.gd" id="5_42tj5"]
 [ext_resource type="Script" path="res://scripts/components/entity_component.gd" id="6_o40ol"]
-[ext_resource type="PackedScene" uid="uid://bvwquhdf4o14m" path="res://assets/2d/circle_shadow/circle_shadow.tscn" id="7_gierv"]
+[ext_resource type="PackedScene" uid="uid://bvwquhdf4o14m" path="res://scenes/misc/circle_shadow.tscn" id="7_gierv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_an50m"]
 radius = 326.098

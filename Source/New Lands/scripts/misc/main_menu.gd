@@ -84,7 +84,7 @@ func on_new_game_pressed() -> void:
 		for y in 4:
 			generate(x, y)
 	
-	get_tree().change_scene_to_file("res://scenes/test.tscn")
+	get_tree().change_scene_to_file("uid://6nhd6mhc8dsh")
 
 func on_load_game_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/test.tscn")
+	get_tree().change_scene_to_file("uid://6nhd6mhc8dsh")

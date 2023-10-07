@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvwquhdf4o14m"]
+
+[ext_resource type="Script" path="res://scripts/misc/circle_shadow.gd" id="1_mgpcf"]
+
+[node name="CircleShadow" type="Node2D"]
+show_behind_parent = true
+script = ExtResource("1_mgpcf")

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://v4uftkmjf08e"]
+
+[ext_resource type="Texture2D" uid="uid://drdo4hkaeidxc" path="res://textures/items/berries.svg" id="1_0gy15"]
+[ext_resource type="Script" path="res://scripts/inventory/inv_item.gd" id="1_c17j6"]
+
+[resource]
+script = ExtResource("1_c17j6")
+name = "Berries"
+icon = ExtResource("1_0gy15")
+weight = 0.0
+description = ""

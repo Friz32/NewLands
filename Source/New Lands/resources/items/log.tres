@@ -8,3 +8,4 @@ script = ExtResource("1_tovjo")
 name = "Log"
 icon = ExtResource("1_l2kls")
 weight = 5.0
+description = ""

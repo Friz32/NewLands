@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cq1evrgcend1a"]
 
-[ext_resource type="Script" path="res://scripts/hud.gd" id="1_c43fn"]
+[ext_resource type="Script" path="res://scripts/misc/hud.gd" id="1_c43fn"]
 [ext_resource type="Texture2D" uid="uid://dsttk2r1an84e" path="res://textures/icons/sack.svg" id="1_ykrux"]
 [ext_resource type="Texture2D" uid="uid://dhfokqobo6rra" path="res://textures/icons/heart.svg" id="2_vun1a"]
 
@@ -21,6 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="Control"]
 layout_mode = 1
@@ -59,6 +60,7 @@ size_flags_vertical = 0
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+modulate = Color(0.356863, 0.572549, 0.294118, 1)
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 texture = ExtResource("2_vun1a")
@@ -81,9 +83,10 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 
 [node name="Button" type="Button" parent="Control/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(36, 36)
 layout_mode = 2
-text = "E"
+theme_override_colors/icon_normal_color = Color(0.337255, 0.337255, 0.337255, 1)
+text = "Tab"
 icon = ExtResource("1_ykrux")
 icon_alignment = 1
 expand_icon = true
