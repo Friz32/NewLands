@@ -59,6 +59,7 @@ item = ExtResource("7_5qv1f")
 [node name="Drop2" parent="ChunkManager2D" instance=ExtResource("6_dux1d")]
 position = Vector2(898, 699)
 item = ExtResource("5_ilnka")
+count = 3
 
 [node name="Player" parent="ChunkManager2D" instance=ExtResource("1_yoh2i")]
 position = Vector2(962, 647)

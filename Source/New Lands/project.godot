@@ -28,6 +28,10 @@ QC="*res://addons/qcore/scenes/system.tscn"
 
 enabled=PackedStringArray("res://addons/qcore/plugin.cfg")
 
+[gui]
+
+theme/custom="res://resources/misc/theme.tres"
+
 [input]
 
 ui_left={

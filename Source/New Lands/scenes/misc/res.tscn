@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dj6uq82jesmff"]
+[gd_scene load_steps=18 format=3 uid="uid://dj6uq82jesmff"]
 
 [ext_resource type="Resource" uid="uid://bgcxv5dmm2tq1" path="res://resources/items/heal_potion.tres" id="1_88ctp"]
 [ext_resource type="Resource" uid="uid://ddbpr2uelk0xv" path="res://resources/items/log.tres" id="1_gtaw6"]
@@ -15,8 +15,9 @@
 [ext_resource type="AudioStream" uid="uid://bhcvaywas4vcc" path="res://audio/effects/attack.wav" id="6_n3tir"]
 [ext_resource type="PackedScene" uid="uid://11uf5lwkr6wd" path="res://scenes/entity/wolf.tscn" id="9_towpq"]
 [ext_resource type="AudioStream" uid="uid://cu8plxuhyvqoy" path="res://audio/effects/hurt.wav" id="10_ms4g6"]
+[ext_resource type="PackedScene" uid="uid://yecfakn02y6w" path="res://scenes/misc/tooltip.tscn" id="11_2ya4e"]
 [ext_resource type="AudioStream" uid="uid://bvno52t6m3wmq" path="res://audio/effects/heal.wav" id="12_7fr38"]
 
 [node name="Res" type="ResourcePreloader"]
-resources = [PackedStringArray("item_berries", "item_heal_potion", "item_log", "item_stone", "scn_chunk_component", "scn_drop", "scn_inv_item", "scn_main_menu", "scn_player", "scn_rock", "scn_tree", "scn_wolf", "sfx_attack", "sfx_heal", "sfx_hurt"), [ExtResource("1_hecuv"), ExtResource("1_88ctp"), ExtResource("1_gtaw6"), ExtResource("2_615eh"), ExtResource("3_d58k3"), ExtResource("5_0yq0s"), ExtResource("4_w042c"), ExtResource("4_4w54m"), ExtResource("3_ryo3h"), ExtResource("5_0c5il"), ExtResource("5_avuny"), ExtResource("9_towpq"), ExtResource("6_n3tir"), ExtResource("12_7fr38"), ExtResource("10_ms4g6")]]
+resources = [PackedStringArray("item_berries", "item_heal_potion", "item_log", "item_stone", "scn_chunk_component", "scn_drop", "scn_inv_item", "scn_main_menu", "scn_player", "scn_rock", "scn_tooltip", "scn_tree", "scn_wolf", "sfx_attack", "sfx_heal", "sfx_hurt"), [ExtResource("1_hecuv"), ExtResource("1_88ctp"), ExtResource("1_gtaw6"), ExtResource("2_615eh"), ExtResource("3_d58k3"), ExtResource("5_0yq0s"), ExtResource("4_w042c"), ExtResource("4_4w54m"), ExtResource("3_ryo3h"), ExtResource("5_0c5il"), ExtResource("11_2ya4e"), ExtResource("5_avuny"), ExtResource("9_towpq"), ExtResource("6_n3tir"), ExtResource("12_7fr38"), ExtResource("10_ms4g6")]]
 script = ExtResource("1_sqi72")

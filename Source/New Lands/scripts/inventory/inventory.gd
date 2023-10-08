@@ -32,25 +32,7 @@ func update():
 	
 	for item in cnt.items:
 		var node = Res["scn_inv_item"].instantiate()
-		
-		var name = ""
-		if cnt.items[item] > 1:
-			name = "%s (%s)" % [item.name, cnt.items[item]]
-		else:
-			name = item.name
-		
-		node.get_node("%Name").text = name
-		node.get_node("%Icon").texture = item.icon
 		node.item = item
-		
-		var description = "%s\n%sWeight: %s (%s)" % [
-			item.name,
-			item.description + "\n" if item.description.length() > 0 else "",
-			item.weight,
-			item.weight * cnt.items[item]
-		]
-		
-		node.tooltip_text = description
 		items.add_child(node)
 		node.update()
 	

@@ -8,3 +8,4 @@ script = ExtResource("1_u3k65")
 name = "Heal Potion"
 icon = ExtResource("1_xyomg")
 weight = 1.0
+description = "Instantly restores 50 health"
