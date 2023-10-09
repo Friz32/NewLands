@@ -40,11 +40,30 @@ func on_use_pressed() -> void:
 	item.use.call()
 
 func on_trash_pressed() -> void:
-	InvSystem.cnt.remove_item(item)
+	var cnt = InvSystem.cnt
+	if cnt.items[item] > 3:
+		var popup = Res["scn_trash_popup"].instantiate() as PopupPanel
+		popup.position = get_viewport().get_mouse_position()
+		popup.get_node("%SpinBox").max_value = cnt.items[item]
+		popup.ok.connect(on_trash_popup_ok)
+		add_child(popup)
+	else:
+		InvSystem.cnt.remove_item(item)
+		InvSystem.update()
+
+		var node = Res["scn_drop"].instantiate()
+		node.item = item
+		var player = get_tree().get_first_node_in_group("player")
+		node.global_position = player.global_position
+		get_tree().get_first_node_in_group("chunk_manager").add_child(node)
+
+func on_trash_popup_ok(count):
+	InvSystem.cnt.remove_item(item, count)
 	InvSystem.update()
-	
+
 	var node = Res["scn_drop"].instantiate()
 	node.item = item
+	node.count = count
 	var player = get_tree().get_first_node_in_group("player")
 	node.global_position = player.global_position
 	get_tree().get_first_node_in_group("chunk_manager").add_child(node)
