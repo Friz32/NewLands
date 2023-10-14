@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/objects/berry_bush.gd" id="1_etuwx"]
 [ext_resource type="Texture2D" uid="uid://bhpvdbw72e2r7" path="res://textures/objects/bush.svg" id="1_ynbe1"]
 [ext_resource type="Texture2D" uid="uid://b5jx6u3sfitsh" path="res://textures/objects/berries_overlay.svg" id="2_ufsox"]
-[ext_resource type="Script" path="res://scripts/misc/interaction.gd" id="3_al4ul"]
+[ext_resource type="Script" path="res://scripts/components/interaction.gd" id="3_al4ul"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8tplh"]
 size = Vector2(52, 44)

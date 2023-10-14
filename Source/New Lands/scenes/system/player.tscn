@@ -1,20 +1,20 @@
 [gd_scene load_steps=44 format=3 uid="uid://bwy2j6k4jtkvi"]
 
-[ext_resource type="Script" path="res://scripts/misc/player.gd" id="1_annt5"]
+[ext_resource type="Script" path="res://scripts/system/player.gd" id="1_annt5"]
 [ext_resource type="Texture2D" uid="uid://b53qxelnmlfuf" path="res://textures/entity/player.svg" id="2_mo8e1"]
-[ext_resource type="PackedScene" uid="uid://cemiudfijoew8" path="res://scenes/misc/inventory.tscn" id="3_qp54j"]
 [ext_resource type="Script" path="res://scripts/components/hurtbox.gd" id="4_ypc12"]
 [ext_resource type="Texture2D" uid="uid://7cifpl0i5ffh" path="res://textures/misc/swipe.png" id="6_tvta1"]
 [ext_resource type="Script" path="res://scripts/chunks/chunk_loading_position_2d.gd" id="7_uoutt"]
 [ext_resource type="AudioStream" uid="uid://bhcvaywas4vcc" path="res://audio/effects/attack.wav" id="8_fua0n"]
 [ext_resource type="AudioStream" uid="uid://cu8plxuhyvqoy" path="res://audio/effects/hurt.wav" id="8_l78mk"]
 [ext_resource type="Script" path="res://scripts/components/entity_component.gd" id="9_b5lik"]
-[ext_resource type="PackedScene" uid="uid://bpxasq5kcynk7" path="res://scenes/misc/game_menu.tscn" id="9_rbxok"]
+[ext_resource type="PackedScene" uid="uid://bpxasq5kcynk7" path="res://scenes/system/game_menu.tscn" id="9_rbxok"]
+[ext_resource type="PackedScene" uid="uid://d3pbltakiltxc" path="res://assets/ui/scenes/character_menu.tscn" id="11_grjs5"]
 [ext_resource type="PackedScene" uid="uid://bvwquhdf4o14m" path="res://scenes/misc/circle_shadow.tscn" id="11_hlu4j"]
 [ext_resource type="Script" path="res://scripts/components/hitbox.gd" id="11_jdgfg"]
 [ext_resource type="Script" path="res://scripts/components/health_component.gd" id="12_ojj6y"]
-[ext_resource type="PackedScene" uid="uid://cq1evrgcend1a" path="res://scenes/misc/hud.tscn" id="14_0833t"]
-[ext_resource type="Script" path="res://scripts/misc/interactor.gd" id="15_mcodj"]
+[ext_resource type="PackedScene" uid="uid://cq1evrgcend1a" path="res://scenes/system/hud.tscn" id="14_0833t"]
+[ext_resource type="Script" path="res://scripts/components/interactor.gd" id="15_mcodj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e5b8o"]
 radius = 4.00001
@@ -209,9 +209,10 @@ stream = ExtResource("8_l78mk")
 [node name="HUD" parent="." instance=ExtResource("14_0833t")]
 visible = false
 
-[node name="Inventory" parent="." instance=ExtResource("3_qp54j")]
-
 [node name="GameMenu" parent="." instance=ExtResource("9_rbxok")]
+visible = false
+
+[node name="CharacterMenu" parent="." instance=ExtResource("11_grjs5")]
 visible = false
 
 [node name="EntityComponent" type="Node" parent="."]

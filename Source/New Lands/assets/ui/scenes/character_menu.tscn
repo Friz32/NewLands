@@ -1,11 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3pbltakiltxc"]
+[gd_scene load_steps=4 format=3 uid="uid://d3pbltakiltxc"]
 
 [ext_resource type="Script" path="res://assets/ui/scripts/character_menu.gd" id="1_8c8jh"]
-[ext_resource type="Shader" path="res://assets/ui/blur.gdshader" id="2_5hq5d"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hbfnn"]
-shader = ExtResource("2_5hq5d")
-shader_parameter/strength = 2
+[ext_resource type="PackedScene" uid="uid://y0s4b7e445cv" path="res://scenes/ui/inventory.tscn" id="2_ue50l"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xfonc"]
 
@@ -19,15 +15,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Background" type="ColorRect" parent="Control"]
-material = SubResource("ShaderMaterial_hbfnn")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 1
@@ -40,34 +29,59 @@ theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
+metadata/_edit_lock_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
 layout_mode = 2
+metadata/_edit_lock_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Button" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Inventory"
-
 [node name="Button2" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
+text = "Q <"
+
+[node name="Inventory" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 0
+text = "Inventory"
+
+[node name="Crafting" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+text = "Crafting"
+
+[node name="Map" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
 text = "Map"
 
 [node name="Button3" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 0
 text = "Journal"
 
 [node name="Button4" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 0
 text = "Quests"
+
+[node name="Button" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+text = "> E"
 
 [node name="TabContainer" type="TabContainer" parent="Control/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -76,30 +90,55 @@ size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_xfonc")
 tab_alignment = 1
 tabs_visible = false
+metadata/_edit_lock_ = true
 
 [node name="Inventory" type="Control" parent="Control/MarginContainer/VBoxContainer/TabContainer"]
 layout_mode = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/TabContainer/Inventory"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Inv"
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/TabContainer/Inventory"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Map" type="Control" parent="Control/MarginContainer/VBoxContainer/TabContainer"]
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/TabContainer/Inventory/VBoxContainer"]
+layout_mode = 2
+text = "Inventory"
+horizontal_alignment = 1
+
+[node name="Inventory" parent="Control/MarginContainer/VBoxContainer/TabContainer/Inventory" instance=ExtResource("2_ue50l")]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_right = 0.0
+anchor_bottom = 0.5
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+grow_vertical = 2
+size_flags_vertical = 6
+
+[node name="Crafting" type="Control" parent="Control/MarginContainer/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/TabContainer/Map"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Map"
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/TabContainer/Crafting"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Journal" type="Control" parent="Control/MarginContainer/VBoxContainer/TabContainer"]
-visible = false
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/TabContainer/Crafting/VBoxContainer"]
 layout_mode = 2
+text = "Crafting
+"
+horizontal_alignment = 1
 
-[node name="Quests" type="Control" parent="Control/MarginContainer/VBoxContainer/TabContainer"]
-visible = false
-layout_mode = 2
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/Inventory" to="." method="on_inventory_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/Crafting" to="." method="on_crafting_pressed"]

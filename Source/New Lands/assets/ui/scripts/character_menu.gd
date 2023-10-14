@@ -6,11 +6,11 @@ func _ready() -> void:
 	visible = false
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_left"):
+	if event.is_action_pressed("character_menu_left"):
 		tab_container.current_tab = wrap(tab_container.current_tab - 1, 0, tab_container.get_tab_count())
 		get_viewport().set_input_as_handled()
-	
-	if event.is_action_pressed("ui_right"):
+
+	if event.is_action_pressed("character_menu_right"):
 		tab_container.current_tab = wrap(tab_container.current_tab + 1, 0, tab_container.get_tab_count())
 		get_viewport().set_input_as_handled()
 	
@@ -22,11 +22,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			var v = visible
 			get_tree().call_group("screen", "set_visible", false)
 			visible = !v
-		
-		if visible:
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		else:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		
 		tab_container.current_tab = tab_container.get_tab_idx_from_control(tab_container.get_node("Inventory"))
 		
@@ -41,11 +36,12 @@ func _unhandled_input(event: InputEvent) -> void:
 			get_tree().call_group("screen", "set_visible", false)
 			visible = !v
 		
-		if visible:
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		else:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		
 		tab_container.current_tab = tab_container.get_tab_idx_from_control(tab_container.get_node("Map"))
 		
 		get_viewport().set_input_as_handled()
+
+func on_inventory_pressed() -> void:
+	tab_container.current_tab = tab_container.get_tab_idx_from_control(tab_container.get_node("Inventory"))
+
+func on_crafting_pressed() -> void:
+	tab_container.current_tab = tab_container.get_tab_idx_from_control(tab_container.get_node("Crafting"))

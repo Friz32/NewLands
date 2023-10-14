@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Craft" load_steps=4 format=3 uid="uid://d28lwrtavwy5c"]
+
+[ext_resource type="Script" path="res://scripts/misc/craft.gd" id="1_2tfvc"]
+[ext_resource type="Resource" uid="uid://v4uftkmjf08e" path="res://resources/items/berries.tres" id="1_soltr"]
+[ext_resource type="Resource" uid="uid://bgcxv5dmm2tq1" path="res://resources/items/heal_potion.tres" id="2_g2pyr"]
+
+[resource]
+script = ExtResource("1_2tfvc")
+required_items = Array[Resource("res://scripts/inventory/inv_item.gd")]([ExtResource("1_soltr")])
+required_tags = PackedStringArray()
+required_count = PackedInt32Array(2)
+result_items = Array[Resource("res://scripts/inventory/inv_item.gd")]([ExtResource("2_g2pyr")])
+result_count = PackedInt32Array(1)

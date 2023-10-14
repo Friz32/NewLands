@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bpxasq5kcynk7"]
 
-[ext_resource type="Script" path="res://scripts/misc/game_menu.gd" id="1_tuyne"]
+[ext_resource type="Script" path="res://scripts/system/game_menu.gd" id="1_tuyne"]
 [ext_resource type="Shader" path="res://assets/ui/blur.gdshader" id="2_omj7f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r5bjd"]
@@ -68,6 +68,10 @@ layout_mode = 2
 layout_mode = 2
 text = "Settings"
 
+[node name="CreateServer" type="Button" parent="Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Create Server"
+
 [node name="Control3" type="Control" parent="Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
@@ -80,5 +84,6 @@ layout_mode = 2
 text = "Quit Game"
 
 [connection signal="pressed" from="Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ReturnToGame" to="." method="on_return_to_game_pressed"]
+[connection signal="pressed" from="Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CreateServer" to="." method="on_create_server_pressed"]
 [connection signal="pressed" from="Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MainMenu" to="." method="on_main_menu_pressed"]
 [connection signal="pressed" from="Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/QuitGame" to="." method="on_quit_pressed"]

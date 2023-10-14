@@ -8,4 +8,5 @@ script = ExtResource("1_c17j6")
 name = "Berries"
 icon = ExtResource("1_0gy15")
 weight = 0.0
+tags = PackedStringArray("food")
 description = ""

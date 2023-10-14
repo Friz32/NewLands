@@ -5,6 +5,10 @@ signal ok(count: int)
 @onready var spin_box: SpinBox = %SpinBox
 @onready var slider: HSlider = %Slider
 
+func _input(event: InputEvent) -> void:
+	if event.is_action("ui_accept"):
+		on_ok_pressed()
+
 func on_ok_pressed() -> void:
 	ok.emit(spin_box.value)
 	queue_free()

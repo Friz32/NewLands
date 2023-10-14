@@ -1,13 +1,40 @@
 extends Control
 
+@onready var ip: LineEdit = %IP
+
 func generate(x, y):
 	const CHUNK_SIZE = 2048
-	const MIN_WOLF_COUNT = 5
-	const MAX_WOLF_COUNT = 12
 	
 	var root = Node2D.new()
 	root.name = "Node2D"
 	root.y_sort_enabled = true
+	
+	var spread = func(cell_count, noise, value, scene, offset, handler := Callable()):
+		for xx in cell_count:
+			for yy in cell_count:
+				var ax = CHUNK_SIZE / cell_count * xx
+				var ay = CHUNK_SIZE / cell_count * yy
+				var bx = ax + x * CHUNK_SIZE
+				var by = ay + y * CHUNK_SIZE
+				
+				if noise.get_noise_2d(bx, by) < value:
+					continue
+				
+				var node = scene.instantiate()
+				var offset_vector = Vector2(randf_range(-offset, offset), randf_range(-offset, offset))
+				node.position = Vector2(ax, ay) + offset_vector
+				root.add_child(node)
+				node.owner = root
+				
+				if !handler.is_null():
+					handler.call(node)
+	
+	var random = func(min, max, scene):
+		for i in randf_range(min, max):
+			var node = scene.instantiate()
+			node.position = Vector2(randf_range(0, CHUNK_SIZE), randf_range(0, CHUNK_SIZE))
+			root.add_child(node)
+			node.owner = root
 	
 #	var component = Res["scn_chunk_component"].instantiate()
 #	root.add_child(component)
@@ -15,62 +42,13 @@ func generate(x, y):
 	
 	randomize()
 	
-	var noise = FastNoiseLite.new()
-	noise.seed = randi()
-	noise.noise_type = FastNoiseLite.TYPE_CELLULAR
-	noise.fractal_type = FastNoiseLite.FRACTAL_NONE
-	noise.cellular_distance_function = FastNoiseLite.DISTANCE_EUCLIDEAN_SQUARED
-	noise.cellular_jitter = 1.13
-	noise.cellular_return_type = FastNoiseLite.RETURN_DISTANCE2_MUL
-	noise.frequency = 0.015
+	spread.call(16, preload("uid://b2qxh4fwreulj"), -0.8, Res["scn_tree"], 64)
+	spread.call(16, preload("uid://buiwmm73ow5ep"), -0.4, Res["scn_rock"], 32)
+	spread.call(32, preload("uid://13yc2ds1sks2"), 0.6, Res["scn_berry_bush"], 32, func(node):
+		node.berries = randf() < 0.2
+	)
 	
-	var a = 16
-	
-	for xx in a:
-		for yy in a:
-			var ax = CHUNK_SIZE / a * xx
-			var ay = CHUNK_SIZE / a * yy
-			var bx = ax + x * CHUNK_SIZE
-			var by = ay + y * CHUNK_SIZE
-			
-			if noise.get_noise_2d(bx, by) < -0.8:
-				continue
-			
-			var tree = Res["scn_tree"].instantiate()
-			var aa = 64
-			var offset = Vector2(randf_range(-aa, aa), randf_range(-aa, aa))
-			tree.position = Vector2(ax, ay) + offset
-			root.add_child(tree)
-			tree.owner = root
-	
-	var rock_noise = FastNoiseLite.new()
-	rock_noise.seed = randi()
-	rock_noise.noise_type = FastNoiseLite.TYPE_CELLULAR
-	rock_noise.fractal_type = FastNoiseLite.FRACTAL_NONE
-	rock_noise.frequency = 0.007
-	
-	for xx in a:
-		for yy in a:
-			var ax = CHUNK_SIZE / a * xx
-			var ay = CHUNK_SIZE / a * yy
-			var bx = ax + x * CHUNK_SIZE
-			var by = ay + y * CHUNK_SIZE
-			
-			if rock_noise.get_noise_2d(bx, by) < -0.4:
-				continue
-			
-			var tree = Res["scn_rock"].instantiate()
-			var aa = 32
-			var offset = Vector2(randf_range(-aa, aa), randf_range(-aa, aa))
-			tree.position = Vector2(ax, ay) + offset
-			root.add_child(tree)
-			tree.owner = root
-	
-	for i in randf_range(MIN_WOLF_COUNT, MAX_WOLF_COUNT):
-		var node = Res["scn_wolf"].instantiate()
-		node.position = Vector2(randf_range(0, CHUNK_SIZE), randf_range(0, CHUNK_SIZE))
-		root.add_child(node)
-		node.owner = root
+	random.call(5, 12, Res["scn_wolf"])
 	
 	seed(0)
 	
@@ -88,3 +66,6 @@ func on_new_game_pressed() -> void:
 
 func on_load_game_pressed() -> void:
 	get_tree().change_scene_to_file("uid://6nhd6mhc8dsh")
+
+func on_connect_to_server_pressed() -> void:
+	Networking.create_client(ip.text)

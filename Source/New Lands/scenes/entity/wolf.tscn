@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bvwquhdf4o14m" path="res://scenes/misc/circle_shadow.tscn" id="7_gierv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_an50m"]
-radius = 326.098
+radius = 190.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ilod1"]
 radius = 5.0

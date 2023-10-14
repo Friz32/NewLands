@@ -1,31 +1,24 @@
-[gd_scene load_steps=17 format=3 uid="uid://6nhd6mhc8dsh"]
+[gd_scene load_steps=18 format=3 uid="uid://6nhd6mhc8dsh"]
 
 [ext_resource type="Script" path="res://scripts/misc/test.gd" id="1_lvjaf"]
-[ext_resource type="PackedScene" uid="uid://bwy2j6k4jtkvi" path="res://scenes/misc/player.tscn" id="1_yoh2i"]
-[ext_resource type="PackedScene" uid="uid://x5j38lwk04ij" path="res://scenes/misc/chunk_manager_2d.tscn" id="3_11eq3"]
-[ext_resource type="PackedScene" uid="uid://dg2x8mol62cj0" path="res://scenes/objects/berry_bush.tscn" id="4_trx5a"]
+[ext_resource type="PackedScene" uid="uid://bwy2j6k4jtkvi" path="res://scenes/system/player.tscn" id="1_yoh2i"]
+[ext_resource type="PackedScene" uid="uid://x5j38lwk04ij" path="res://scenes/system/chunk_manager_2d.tscn" id="3_11eq3"]
 [ext_resource type="Resource" uid="uid://bgcxv5dmm2tq1" path="res://resources/items/heal_potion.tres" id="5_ilnka"]
-[ext_resource type="PackedScene" uid="uid://cxwfyoyh1pl84" path="res://scenes/objects/tree.tscn" id="5_vufbc"]
 [ext_resource type="PackedScene" uid="uid://vu26sout4mux" path="res://scenes/objects/drop.tscn" id="6_dux1d"]
 [ext_resource type="Resource" uid="uid://dtgbgwu4gcqvn" path="res://resources/items/stone.tres" id="7_5qv1f"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_sa80g"]
-noise_type = 2
-fractal_type = 0
-cellular_distance_function = 1
-cellular_jitter = 1.13
-cellular_return_type = 5
+[ext_resource type="PackedScene" uid="uid://bj1c6y46dqaw1" path="res://scenes/objects/chest.tscn" id="9_hask6"]
+[ext_resource type="FastNoiseLite" uid="uid://b2qxh4fwreulj" path="res://resources/misc/noise_trees.tres" id="10_dlp5k"]
+[ext_resource type="FastNoiseLite" uid="uid://buiwmm73ow5ep" path="res://resources/misc/noise_rocks.tres" id="11_6vmi5"]
+[ext_resource type="FastNoiseLite" uid="uid://13yc2ds1sks2" path="res://resources/misc/noise_bushes.tres" id="12_c55dr"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8oueb"]
-noise = SubResource("FastNoiseLite_sa80g")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_ee0gs"]
-noise_type = 2
-frequency = 0.007
-fractal_type = 0
+noise = ExtResource("10_dlp5k")
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8o2nl"]
-noise = SubResource("FastNoiseLite_ee0gs")
+noise = ExtResource("11_6vmi5")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0u8sn"]
+noise = ExtResource("12_c55dr")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pljo3"]
 normal = Vector2(0, 1)
@@ -64,11 +57,8 @@ count = 3
 [node name="Player" parent="ChunkManager2D" instance=ExtResource("1_yoh2i")]
 position = Vector2(962, 647)
 
-[node name="BerryBush" parent="ChunkManager2D" instance=ExtResource("4_trx5a")]
-position = Vector2(1017, 702)
-
-[node name="Tree" parent="ChunkManager2D" instance=ExtResource("5_vufbc")]
-position = Vector2(1050, 679)
+[node name="Chest" parent="ChunkManager2D" instance=ExtResource("9_hask6")]
+position = Vector2(934, 567)
 
 [node name="Trees" type="Sprite2D" parent="."]
 position = Vector2(88, -170)
@@ -79,6 +69,11 @@ texture = SubResource("NoiseTexture2D_8oueb")
 position = Vector2(225, -166)
 scale = Vector2(0.2, 0.2)
 texture = SubResource("NoiseTexture2D_8o2nl")
+
+[node name="Bushes" type="Sprite2D" parent="."]
+position = Vector2(365, -166)
+scale = Vector2(0.2, 0.2)
+texture = SubResource("NoiseTexture2D_0u8sn")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 
