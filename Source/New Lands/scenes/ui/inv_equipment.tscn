@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://duxncdbt43h3t"]
+
+[ext_resource type="Script" path="res://scripts/inventory/inv_equipment.gd" id="1_278my"]
+[ext_resource type="LabelSettings" uid="uid://db5cdaentuaq3" path="res://resources/label_settings/inv_item_name.tres" id="2_1o2yj"]
+[ext_resource type="Texture2D" uid="uid://dtqsuvikbvhuy" path="res://textures/items/default.svg" id="2_c6ygt"]
+[ext_resource type="Texture2D" uid="uid://781jgl1noblu" path="res://textures/icons/cross.svg" id="3_7lvnl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4vkne"]
+
+[node name="InvEquipment" type="PanelContainer"]
+offset_right = 89.0
+offset_bottom = 23.0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4vkne")
+script = ExtResource("1_278my")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("2_c6ygt")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name"
+label_settings = ExtResource("2_1o2yj")
+vertical_alignment = 1
+
+[node name="Remove" type="TextureButton" parent="MarginContainer/HBoxContainer"]
+modulate = Color(0.564706, 0.564706, 0.564706, 1)
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+tooltip_text = "Unequip"
+texture_normal = ExtResource("3_7lvnl")
+ignore_texture_size = true
+stretch_mode = 5
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Remove" to="." method="on_remove_pressed"]

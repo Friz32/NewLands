@@ -8,4 +8,4 @@ func create_server():
 func create_client(ip):
 	var peer = ENetMultiplayerPeer.new()
 	peer.create_client(ip, 8888)
-	multiplayer.multiplayer_peer = peer 
+	multiplayer.multiplayer_peer = peer

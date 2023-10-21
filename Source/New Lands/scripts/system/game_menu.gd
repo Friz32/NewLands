@@ -8,7 +8,7 @@ func _unhandled_input(event):
 		var v = visible
 		get_tree().call_group("screen", "set_visible", false)
 		visible = !v
-		
+
 		get_tree().paused = !get_tree().paused
 		get_tree().root.set_input_as_handled()
 

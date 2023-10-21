@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://scripts/misc/test.gd" id="1_lvjaf"]
 [ext_resource type="PackedScene" uid="uid://bwy2j6k4jtkvi" path="res://scenes/system/player.tscn" id="1_yoh2i"]
 [ext_resource type="PackedScene" uid="uid://x5j38lwk04ij" path="res://scenes/system/chunk_manager_2d.tscn" id="3_11eq3"]
-[ext_resource type="Resource" uid="uid://bgcxv5dmm2tq1" path="res://resources/items/heal_potion.tres" id="5_ilnka"]
+[ext_resource type="Resource" uid="uid://w6mvhdgj33y7" path="res://resources/items/iron_pickaxe.tres" id="4_v6ot7"]
+[ext_resource type="Resource" uid="uid://dy1ep00vb05dk" path="res://resources/items/iron_ore.tres" id="5_e125x"]
 [ext_resource type="PackedScene" uid="uid://vu26sout4mux" path="res://scenes/objects/drop.tscn" id="6_dux1d"]
-[ext_resource type="Resource" uid="uid://dtgbgwu4gcqvn" path="res://resources/items/stone.tres" id="7_5qv1f"]
 [ext_resource type="PackedScene" uid="uid://bj1c6y46dqaw1" path="res://scenes/objects/chest.tscn" id="9_hask6"]
 [ext_resource type="FastNoiseLite" uid="uid://b2qxh4fwreulj" path="res://resources/misc/noise_trees.tres" id="10_dlp5k"]
 [ext_resource type="FastNoiseLite" uid="uid://buiwmm73ow5ep" path="res://resources/misc/noise_rocks.tres" id="11_6vmi5"]
@@ -47,11 +47,11 @@ world = "user://world"
 
 [node name="Drop" parent="ChunkManager2D" instance=ExtResource("6_dux1d")]
 position = Vector2(877, 681)
-item = ExtResource("7_5qv1f")
+item = ExtResource("4_v6ot7")
 
 [node name="Drop2" parent="ChunkManager2D" instance=ExtResource("6_dux1d")]
-position = Vector2(898, 699)
-item = ExtResource("5_ilnka")
+position = Vector2(898, 681)
+item = ExtResource("5_e125x")
 count = 3
 
 [node name="Player" parent="ChunkManager2D" instance=ExtResource("1_yoh2i")]

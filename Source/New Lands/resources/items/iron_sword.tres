@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://34wqbd0yoghe"]
+
+[ext_resource type="Script" path="res://scripts/inventory/inv_item.gd" id="1_2kyp6"]
+[ext_resource type="Texture2D" uid="uid://cjaed7pdspdw7" path="res://textures/items/equipment/W_Sword001.png" id="1_37eeb"]
+
+[resource]
+script = ExtResource("1_2kyp6")
+name = "Iron Sword"
+icon = ExtResource("1_37eeb")
+weight = 2.0
+tags = PackedStringArray()
+equip_slot = "hand"
+description = "Hand"

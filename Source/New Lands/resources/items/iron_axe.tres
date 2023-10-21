@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://c5v8e435vfy5b"]
+
+[ext_resource type="Texture2D" uid="uid://bjpw11ihxxvne" path="res://textures/items/equipment/0371ff60-fb04-416b-a2a0-8019223a6eed.png" id="1_coxev"]
+[ext_resource type="Script" path="res://scripts/inventory/inv_item.gd" id="1_it6uv"]
+
+[resource]
+script = ExtResource("1_it6uv")
+name = "Iron Axe"
+icon = ExtResource("1_coxev")
+weight = 2.0
+tags = PackedStringArray()
+equip_slot = "hand"
+description = "Hand"

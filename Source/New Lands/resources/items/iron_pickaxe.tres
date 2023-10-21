@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=2 format=3 uid="uid://w6mvhdgj33y7"]
+
+[ext_resource type="Script" path="res://scripts/inventory/inv_item.gd" id="1_tkih5"]
+
+[resource]
+script = ExtResource("1_tkih5")
+name = "Iron Pickaxe"
+weight = 2.0
+tags = PackedStringArray()
+equip_slot = "hand"
+description = "Hand"

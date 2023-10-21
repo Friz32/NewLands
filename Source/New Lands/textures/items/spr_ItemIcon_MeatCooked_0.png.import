@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://divsmvb7evgpp"
-path="res://.godot/imported/ore_stone.png-440db0f9a4fceddf667bdf6d5d7e8f2e.ctex"
+uid="uid://b3iqo1qttsepd"
+path="res://.godot/imported/spr_ItemIcon_MeatCooked_0.png-a696c85f5283983f6e1d4de00e37b7aa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/items/ore_stone.png"
-dest_files=["res://.godot/imported/ore_stone.png-440db0f9a4fceddf667bdf6d5d7e8f2e.ctex"]
+source_file="res://textures/items/spr_ItemIcon_MeatCooked_0.png"
+dest_files=["res://.godot/imported/spr_ItemIcon_MeatCooked_0.png-a696c85f5283983f6e1d4de00e37b7aa.ctex"]
 
 [params]
 

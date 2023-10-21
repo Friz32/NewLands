@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7ylwecu3a134"
-path="res://.godot/imported/raw_wood.png-2f4766a1778794dd9ba446cb1aa4e225.ctex"
+uid="uid://cjaed7pdspdw7"
+path="res://.godot/imported/W_Sword001.png-a1ec748a5fbf0c96ca8ae4980aff491b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/items/raw_wood.png"
-dest_files=["res://.godot/imported/raw_wood.png-2f4766a1778794dd9ba446cb1aa4e225.ctex"]
+source_file="res://textures/items/equipment/W_Sword001.png"
+dest_files=["res://.godot/imported/W_Sword001.png-a1ec748a5fbf0c96ca8ae4980aff491b.ctex"]
 
 [params]
 

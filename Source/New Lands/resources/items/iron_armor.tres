@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://sfxrfncyqaru"]
+
+[ext_resource type="Texture2D" uid="uid://cbwaot6s5c345" path="res://textures/items/equipment/iron_armor.png" id="1_8o73i"]
+[ext_resource type="Script" path="res://scripts/inventory/inv_item.gd" id="2_xkk35"]
+
+[resource]
+script = ExtResource("2_xkk35")
+name = "Iron Armor"
+icon = ExtResource("1_8o73i")
+weight = 5.0
+tags = PackedStringArray()
+equip_slot = "body"
+description = "Body"

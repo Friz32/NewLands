@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://dy1ep00vb05dk"]
+
+[ext_resource type="Texture2D" uid="uid://dn0u50nk6nady" path="res://textures/items/materials/spr_ItemIcon_OreIron_0.png" id="1_db6iu"]
+[ext_resource type="Script" path="res://scripts/inventory/inv_item.gd" id="1_m1h0l"]
+
+[resource]
+script = ExtResource("1_m1h0l")
+name = "Iron Ore"
+icon = ExtResource("1_db6iu")
+weight = 10.0
+tags = PackedStringArray()
+equip_slot = ""
+description = ""

@@ -1,19 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://crgt2yy770ew"]
+[gd_scene load_steps=8 format=3 uid="uid://crgt2yy770ew"]
 
 [ext_resource type="Script" path="res://scripts/inventory/inv_ui_item.gd" id="1_rdg3e"]
 [ext_resource type="Texture2D" uid="uid://ce240vla3ijiq" path="res://textures/icons/tap.svg" id="2_3hb84"]
-[ext_resource type="Texture2D" uid="uid://drdo4hkaeidxc" path="res://textures/items/berries.svg" id="2_apcv6"]
+[ext_resource type="Texture2D" uid="uid://dtqsuvikbvhuy" path="res://textures/items/default.svg" id="2_4ya42"]
+[ext_resource type="LabelSettings" uid="uid://db5cdaentuaq3" path="res://resources/label_settings/inv_item_name.tres" id="3_4ilsc"]
+[ext_resource type="Texture2D" uid="uid://b2xuocua5sqim" path="res://textures/icons/armor.svg" id="3_do6ii"]
 [ext_resource type="Texture2D" uid="uid://bd8n3sevuinfd" path="res://textures/icons/trash.svg" id="3_vlcjv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ktwwt"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_re0rv"]
-font_size = 14
-font_color = Color(0.721569, 0.721569, 0.721569, 1)
-
 [node name="InvItem" type="PanelContainer"]
-offset_right = 51.0
-offset_bottom = 26.0
+offset_right = 129.0
+offset_bottom = 23.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ktwwt")
 script = ExtResource("1_rdg3e")
 
@@ -27,9 +25,10 @@ layout_mode = 2
 
 [node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
-texture = ExtResource("2_apcv6")
+texture = ExtResource("2_4ya42")
 expand_mode = 1
 stretch_mode = 5
 
@@ -38,25 +37,38 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Name"
-label_settings = SubResource("LabelSettings_re0rv")
+label_settings = ExtResource("3_4ilsc")
 vertical_alignment = 1
+
+[node name="Equip" type="TextureButton" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(0.564706, 0.564706, 0.564706, 1)
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+tooltip_text = "Equip/Unequip"
+texture_normal = ExtResource("3_do6ii")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="Use" type="TextureButton" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
+modulate = Color(0.564706, 0.564706, 0.564706, 1)
 custom_minimum_size = Vector2(16, 0)
 layout_mode = 2
-size_flags_horizontal = 8
+tooltip_text = "Use"
 texture_normal = ExtResource("2_3hb84")
 ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Trash" type="TextureButton" parent="MarginContainer/HBoxContainer"]
+modulate = Color(0.564706, 0.564706, 0.564706, 1)
 custom_minimum_size = Vector2(16, 0)
 layout_mode = 2
-size_flags_horizontal = 8
+tooltip_text = "Drop"
 texture_normal = ExtResource("3_vlcjv")
 ignore_texture_size = true
 stretch_mode = 5
 
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Equip" to="." method="on_equip_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Use" to="." method="on_use_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Trash" to="." method="on_trash_pressed"]

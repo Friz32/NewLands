@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=2 format=3 uid="uid://dam3qsqj42irj"]
+
+[ext_resource type="Script" path="res://scripts/inventory/inv_item.gd" id="1_7gtt1"]
+
+[resource]
+script = ExtResource("1_7gtt1")
+name = "Gold Coin"
+weight = 0.0
+tags = PackedStringArray()
+equip_slot = ""
+description = ""

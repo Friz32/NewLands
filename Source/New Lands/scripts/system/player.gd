@@ -16,11 +16,11 @@ extends CharacterBody2D
 
 func _ready() -> void:
 	hud.visible = true
-	
+
 	hurtbox.monitoring = false
 	hurtbox_pivot.visible = true
 	hurtbox.get_node("Sprite2D").visible = false
-	
+
 	on_health_changed()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -30,9 +30,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		attack_cooldown.start()
 		hurtbox_pivot.rotation = (get_local_mouse_position() - hurtbox_pivot.position).angle()
 		audio_attack.play()
-		
+
 		await get_tree().create_timer(0.1).timeout
-		
+
 		hurtbox.monitoring = false
 		hurtbox.get_node("Sprite2D").visible = false
 
@@ -45,10 +45,10 @@ func _physics_process(delta):
 	velocity += input * move_speed
 	move_and_slide()
 	velocity = velocity.lerp(Vector2.ZERO, deceleration)
-	
+
 	if input.length() > 0:
 		playback.travel("move")
-		
+
 		anim_tree["parameters/idle/blend_position"] = input
 		anim_tree["parameters/move/blend_position"] = input
 	else:
