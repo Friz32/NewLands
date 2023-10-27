@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://c3b60gjgqiomn"]
+
+[ext_resource type="Texture2D" uid="uid://04mw5urx5vlp" path="res://textures/objects/campfire.svg" id="1_251yb"]
+[ext_resource type="Texture2D" uid="uid://chwyonx0m8g5t" path="res://textures/particles/fire_01.png" id="2_dan3y"]
+[ext_resource type="Texture2D" uid="uid://bkqlnesun0dcj" path="res://textures/misc/light.png" id="3_pg0uf"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kjpoa"]
+radius = 7.0
+height = 34.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xeipf"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_yqnag"]
+_data = [Vector2(0.259259, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_inp7e"]
+curve = SubResource("Curve_yqnag")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7yeqj"]
+emission_shape = 1
+emission_sphere_radius = 8.0
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 30.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 50.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+tangential_accel_max = 56.0
+angle_max = 360.0
+scale_min = 0.05
+scale_max = 0.05
+scale_curve = SubResource("CurveTexture_inp7e")
+color = Color(1, 0.537255, 0.396078, 1)
+
+[node name="Campfire" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -7)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_kjpoa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -24)
+texture = ExtResource("1_251yb")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_xeipf")
+position = Vector2(0, -17)
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_7yeqj")
+texture = ExtResource("2_dan3y")
+lifetime = 0.8
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -9)
+blend_mode = 2
+texture = ExtResource("3_pg0uf")

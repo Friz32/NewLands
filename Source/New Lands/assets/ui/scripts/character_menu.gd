@@ -19,12 +19,16 @@ func _unhandled_input(event: InputEvent) -> void:
 			tab_container.current_tab = tab_container.get_tab_idx_from_control(tab_container.get_node(tab))
 			get_viewport().set_input_as_handled()
 
-	if event.is_action_pressed("character_menu_left"):
-		tab_container.current_tab = wrap(tab_container.current_tab - 1, 0, tab_container.get_tab_count())
-		get_viewport().set_input_as_handled()
+#	if event.is_action_pressed("character_menu_left"):
+#		tab_container.current_tab = wrap(tab_container.current_tab - 1, 0, tab_container.get_tab_count())
+#		get_viewport().set_input_as_handled()
+#
+#	if event.is_action_pressed("character_menu_right"):
+#		tab_container.current_tab = wrap(tab_container.current_tab + 1, 0, tab_container.get_tab_count())
+#		get_viewport().set_input_as_handled()
 	
-	if event.is_action_pressed("character_menu_right"):
-		tab_container.current_tab = wrap(tab_container.current_tab + 1, 0, tab_container.get_tab_count())
+	if visible && event.is_action_pressed("ui_cancel"):
+		visible = false
 		get_viewport().set_input_as_handled()
 	
 	tab.call("inventory", "Inventory")

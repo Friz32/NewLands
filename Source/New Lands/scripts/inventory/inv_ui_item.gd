@@ -59,7 +59,7 @@ func on_trash_pressed() -> void:
 		node.item = item
 		var player = get_tree().get_first_node_in_group("player")
 		node.global_position = player.global_position
-		get_tree().get_first_node_in_group("chunk_manager").add_child(node)
+		player.get_parent().add_child(node)
 
 func on_trash_popup_ok(count):
 	InvSystem.cnt.remove_item(item, count)
@@ -70,7 +70,7 @@ func on_trash_popup_ok(count):
 	node.count = count
 	var player = get_tree().get_first_node_in_group("player")
 	node.global_position = player.global_position
-	get_tree().get_first_node_in_group("chunk_manager").add_child(node)
+	player.get_parent().add_child(node)
 
 func on_equip_pressed() -> void:
 	if !InvSystem.equipment.has(item.equip_slot):

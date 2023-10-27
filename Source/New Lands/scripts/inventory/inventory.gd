@@ -5,13 +5,6 @@ extends VBoxContainer
 @onready var equipment: Container = %Equipment
 
 func _ready() -> void:
-	var cnt = InvSystem.cnt
-	cnt.add_item(Res["item_heal_potion"], 10)
-	cnt.add_item(preload("uid://c5v8e435vfy5b"))
-	cnt.add_item(preload("uid://34wqbd0yoghe"))
-	cnt.add_item(preload("uid://sfxrfncyqaru"))
-	cnt.add_item(preload("uid://dam3qsqj42irj"), 100)
-
 	update()
 	update_equipment()
 

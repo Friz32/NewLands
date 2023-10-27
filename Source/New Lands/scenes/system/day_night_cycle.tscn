@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://cehc6ermlqstx"]
+
+[ext_resource type="Script" path="res://scripts/system/day_night_cycle.gd" id="1_oe6g6"]
+
+[sub_resource type="Animation" id="Animation_kv3df"]
+resource_name = "default"
+length = 24.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5, 6, 7, 9, 15, 17, 18, 19, 24),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.129412, 0.184314, 0.32549, 1), Color(0.129412, 0.184314, 0.32549, 1), Color(1, 0.576471, 0.494118, 1), Color(0.517647, 0.796078, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0.694118, 0.360784, 1, 1), Color(1, 0.576471, 0.494118, 1), Color(0.129412, 0.184314, 0.32549, 1), Color(0.129412, 0.184314, 0.32549, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ckmj0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a2srl"]
+_data = {
+"RESET": SubResource("Animation_ckmj0"),
+"default": SubResource("Animation_kv3df")
+}
+
+[node name="DayNightCycle" type="CanvasModulate"]
+script = ExtResource("1_oe6g6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "default"
+libraries = {
+"": SubResource("AnimationLibrary_a2srl")
+}

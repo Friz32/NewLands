@@ -5,10 +5,11 @@ func _ready():
 
 func _unhandled_input(event):
 	if InputMap.has_action("game_menu") && event.is_action_pressed("game_menu"):
-		var v = visible
-		get_tree().call_group("screen", "set_visible", false)
-		visible = !v
-
+#		var v = visible
+#		get_tree().call_group("screen", "set_visible", false)
+#		visible = !v
+		
+		visible = !visible
 		get_tree().paused = !get_tree().paused
 		get_tree().root.set_input_as_handled()
 

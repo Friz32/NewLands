@@ -19,9 +19,9 @@ config/icon="res://icon.png"
 
 [autoload]
 
+System="*res://scenes/system/system.tscn"
 InvSystem="*res://scripts/inventory/inv_system.gd"
 Res="*res://scenes/system/res.tscn"
-System="*res://scripts/system/system.gd"
 Chunks="*res://scripts/chunks/chunks.gd"
 QC="*res://addons/qcore/scenes/system.tscn"
 Networking="*res://scripts/system/networking.gd"
