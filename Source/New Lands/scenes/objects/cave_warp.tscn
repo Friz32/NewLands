@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://bgydilygxgwam"]
+
+[ext_resource type="Script" path="res://scripts/objects/cave_warp.gd" id="1_hd1po"]
+[ext_resource type="Script" path="res://scripts/components/interaction.gd" id="1_widp8"]
+[ext_resource type="Texture2D" uid="uid://cc1ib8ht8qi6g" path="res://textures/objects/cave_warp.svg" id="4_arqof"]
+[ext_resource type="Script" path="res://scripts/system/warp.gd" id="4_kc6tu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_irtxj"]
+size = Vector2(56, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wv4ch"]
+size = Vector2(58, 22)
+
+[node name="CaveWarp" type="StaticBody2D"]
+script = ExtResource("1_hd1po")
+
+[node name="Interaction" type="Area2D" parent="."]
+visible = false
+position = Vector2(0, 13)
+script = ExtResource("1_widp8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
+shape = SubResource("RectangleShape2D_irtxj")
+
+[node name="Warp" type="Area2D" parent="."]
+script = ExtResource("4_kc6tu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -40)
+texture = ExtResource("4_arqof")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_wv4ch")
+
+[connection signal="interact" from="Interaction" to="." method="on_interact"]

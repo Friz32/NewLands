@@ -19,7 +19,7 @@ func chunk_file_name_to_position_3d(file: String) -> Vector3i:
 	return Vector3i(int(arr[0]), int(arr[1]), int(arr[2]))
 
 func get_load_positions_square(global_pos: Vector2, distance: int, chunk_size: int) -> Array[Vector2i]:
-	var center = global_pos / chunk_size
+	var center = round(global_pos / chunk_size)
 	var positions: Array[Vector2i]
 	for x in range(center.x - distance, center.x + distance + 1):
 		for y in range(center.y - distance, center.y + distance + 1):

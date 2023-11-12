@@ -1,6 +1,58 @@
-[gd_scene load_steps=2 format=3 uid="uid://7ulttrqhcm55"]
+[gd_scene load_steps=6 format=3 uid="uid://7ulttrqhcm55"]
 
 [ext_resource type="Script" path="res://scripts/system/system.gd" id="1_1a2rf"]
+
+[sub_resource type="Animation" id="Animation_26pmy"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_o7t4b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_puujj"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qc3s8"]
+_data = {
+"RESET": SubResource("Animation_o7t4b"),
+"fade_in": SubResource("Animation_26pmy"),
+"fade_out": SubResource("Animation_puujj")
+}
 
 [node name="System" type="Node"]
 script = ExtResource("1_1a2rf")
@@ -8,5 +60,43 @@ script = ExtResource("1_1a2rf")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
 autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Info" type="RichTextLabel" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.201562
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Transition" type="ColorRect" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/Transition"]
+libraries = {
+"": SubResource("AnimationLibrary_qc3s8")
+}
 
 [connection signal="timeout" from="Timer" to="." method="on_timeout"]

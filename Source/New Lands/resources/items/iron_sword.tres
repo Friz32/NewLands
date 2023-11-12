@@ -9,5 +9,5 @@ name = "Iron Sword"
 icon = ExtResource("1_37eeb")
 weight = 2.0
 tags = PackedStringArray()
-equip_slot = "hand"
-description = "Hand"
+equip_slot = "main_hand"
+description = "Main Hand"

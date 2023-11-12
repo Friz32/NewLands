@@ -3,14 +3,8 @@
 [ext_resource type="Script" path="res://scripts/inventory/inventory.gd" id="2_ahp7u"]
 [ext_resource type="StyleBox" uid="uid://citga5lg6df5w" path="res://resources/misc/panel.tres" id="2_wywac"]
 [ext_resource type="PackedScene" uid="uid://crgt2yy770ew" path="res://scenes/ui/inv_item.tscn" id="3_a2v3m"]
+[ext_resource type="StyleBox" uid="uid://d1vjgeqyjb8s3" path="res://resources/style_boxes/panel2.tres" id="3_j2slu"]
 [ext_resource type="PackedScene" uid="uid://duxncdbt43h3t" path="res://scenes/ui/inv_equipment.tscn" id="4_nxvos"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7cc4o"]
-bg_color = Color(0.129412, 0.129412, 0.129412, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
 
 [sub_resource type="LabelSettings" id="LabelSettings_870t7"]
 font_size = 12
@@ -44,7 +38,7 @@ text = "Equipment
 [node name="ScrollContainer" type="ScrollContainer" parent="Equipment/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_7cc4o")
+theme_override_styles/panel = ExtResource("3_j2slu")
 
 [node name="Equipment" type="VBoxContainer" parent="Equipment/MarginContainer/VBoxContainer/ScrollContainer"]
 unique_name_in_owner = true
@@ -97,7 +91,7 @@ vertical_alignment = 1
 [node name="ScrollContainer" type="ScrollContainer" parent="Inventory/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_7cc4o")
+theme_override_styles/panel = ExtResource("3_j2slu")
 
 [node name="Items" type="VBoxContainer" parent="Inventory/MarginContainer/VBoxContainer/ScrollContainer"]
 unique_name_in_owner = true

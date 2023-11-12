@@ -13,6 +13,9 @@ extends CharacterBody2D
 @onready var audio_hurt: AudioStreamPlayer = $AudioHurt
 @onready var hud: CanvasLayer = $HUD
 @onready var health_component: HealthComponent = $HealthComponent
+@onready var visual: Node2D = $Visual
+
+var health_regen := 0.01
 
 func _ready() -> void:
 	hud.visible = true
@@ -39,6 +42,8 @@ func _unhandled_input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	hud.get_node("%AttackCooldown").visible = attack_cooldown.time_left > 0
 	hud.get_node("%AttackCooldown").value = attack_cooldown.time_left / attack_cooldown.wait_time * 100
+	
+	health_component.health += health_regen
 
 func _physics_process(delta):
 	var input = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").normalized()
@@ -53,6 +58,12 @@ func _physics_process(delta):
 		anim_tree["parameters/move/blend_position"] = input
 	else:
 		playback.travel("idle")
+	
+#	# Освещение ломается когда scale имеет негативное значение
+#	if input.x > 0:
+#		visual.scale.x = 1
+#	elif input.x < 0:
+#		visual.scale.x = -1
 
 func on_died() -> void:
 	get_tree().reload_current_scene()

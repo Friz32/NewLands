@@ -11,6 +11,9 @@ func _ready() -> void:
 	load_chunks()
 
 func load_chunks():
+	if !multiplayer.is_server():
+		return
+	
 	for pos in loading_positions:
 		var list = Chunks.get_load_positions_square(pos.global_position, pos.loading_distance, chunk_size)
 		for item in list:
@@ -47,7 +50,7 @@ func unload_all_chunks():
 func unload_chunk(pos: Vector2i):
 	var scene = PackedScene.new()
 	scene.pack(loaded_chunks[pos])
-	ResourceSaver.save(scene, "user://world/%s.%s.scn" % [pos.x, pos.y])
+	ResourceSaver.save(scene, "%s/%s.%s.scn" % [world, pos.x, pos.y])
 	
 	loaded_chunks[pos].queue_free()
 	loaded_chunks.erase(pos)

@@ -15,7 +15,7 @@ blend_mode = 1
 _data = [Vector2(0.259259, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_inp7e"]
+[sub_resource type="CurveTexture" id="CurveTexture_i4qs2"]
 curve = SubResource("Curve_yqnag")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7yeqj"]
@@ -32,7 +32,7 @@ tangential_accel_max = 56.0
 angle_max = 360.0
 scale_min = 0.05
 scale_max = 0.05
-scale_curve = SubResource("CurveTexture_inp7e")
+scale_curve = SubResource("CurveTexture_i4qs2")
 color = Color(1, 0.537255, 0.396078, 1)
 
 [node name="Campfire" type="StaticBody2D"]
@@ -49,7 +49,7 @@ texture = ExtResource("1_251yb")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_xeipf")
-position = Vector2(0, -17)
+position = Vector2(0, -20)
 amount = 12
 process_material = SubResource("ParticleProcessMaterial_7yeqj")
 texture = ExtResource("2_dan3y")

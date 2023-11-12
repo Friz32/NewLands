@@ -1,7 +1,8 @@
-[gd_scene load_steps=44 format=3 uid="uid://bwy2j6k4jtkvi"]
+[gd_scene load_steps=45 format=3 uid="uid://bwy2j6k4jtkvi"]
 
 [ext_resource type="Script" path="res://scripts/system/player.gd" id="1_annt5"]
 [ext_resource type="Texture2D" uid="uid://b53qxelnmlfuf" path="res://textures/entity/player.svg" id="2_mo8e1"]
+[ext_resource type="PackedScene" uid="uid://cn2re2kyckl4m" path="res://scenes/equipment/torch.tscn" id="2_puwd2"]
 [ext_resource type="Script" path="res://scripts/components/hurtbox.gd" id="4_ypc12"]
 [ext_resource type="Texture2D" uid="uid://7cifpl0i5ffh" path="res://textures/misc/swipe.png" id="6_tvta1"]
 [ext_resource type="Script" path="res://scripts/chunks/chunk_loading_position_2d.gd" id="7_uoutt"]
@@ -155,7 +156,15 @@ visible = false
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_e5b8o")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="OffHand" type="Node2D" parent="Visual"]
+unique_name_in_owner = true
+position = Vector2(12, -21)
+
+[node name="Torch" parent="Visual/OffHand" instance=ExtResource("2_puwd2")]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visual"]
 position = Vector2(0, -32)
 texture = ExtResource("2_mo8e1")
 

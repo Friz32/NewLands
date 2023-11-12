@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dj6uq82jesmff"]
+[gd_scene load_steps=26 format=3 uid="uid://dj6uq82jesmff"]
 
 [ext_resource type="Resource" uid="uid://bgcxv5dmm2tq1" path="res://resources/items/heal_potion.tres" id="1_88ctp"]
 [ext_resource type="Resource" uid="uid://ddbpr2uelk0xv" path="res://resources/items/log.tres" id="1_gtaw6"]
@@ -13,15 +13,19 @@
 [ext_resource type="PackedScene" uid="uid://vu26sout4mux" path="res://scenes/objects/drop.tscn" id="5_0yq0s"]
 [ext_resource type="PackedScene" uid="uid://cxwfyoyh1pl84" path="res://scenes/objects/tree.tscn" id="5_avuny"]
 [ext_resource type="PackedScene" uid="uid://dg2x8mol62cj0" path="res://scenes/objects/berry_bush.tscn" id="5_q6uey"]
+[ext_resource type="PackedScene" uid="uid://duu5jbyq02etr" path="res://scenes/procedural_generation/cave_template1.tscn" id="6_6125o"]
 [ext_resource type="AudioStream" uid="uid://bhcvaywas4vcc" path="res://audio/effects/attack.wav" id="6_n3tir"]
+[ext_resource type="PackedScene" uid="uid://cjthqxu7krpr2" path="res://scenes/procedural_generation/cave_template2.tscn" id="7_ccme2"]
 [ext_resource type="PackedScene" uid="uid://duxncdbt43h3t" path="res://scenes/ui/inv_equipment.tscn" id="8_4jc03"]
 [ext_resource type="PackedScene" uid="uid://11uf5lwkr6wd" path="res://scenes/entity/wolf.tscn" id="9_towpq"]
 [ext_resource type="AudioStream" uid="uid://cu8plxuhyvqoy" path="res://audio/effects/hurt.wav" id="10_ms4g6"]
 [ext_resource type="PackedScene" uid="uid://yecfakn02y6w" path="res://scenes/ui/tooltip.tscn" id="11_2ya4e"]
 [ext_resource type="AudioStream" uid="uid://bvno52t6m3wmq" path="res://audio/effects/heal.wav" id="12_7fr38"]
 [ext_resource type="PackedScene" uid="uid://bnk5limq32uk" path="res://scenes/ui/trash_popup.tscn" id="12_24ocr"]
+[ext_resource type="PackedScene" uid="uid://tx83k86mctxu" path="res://scenes/world/test.tscn" id="13_6r76u"]
+[ext_resource type="PackedScene" uid="uid://6nhd6mhc8dsh" path="res://scenes/world/world.tscn" id="17_ggwkf"]
 [ext_resource type="Texture2D" uid="uid://dtqsuvikbvhuy" path="res://textures/items/default.svg" id="19_2jpqo"]
 
 [node name="Res" type="ResourcePreloader"]
-resources = [PackedStringArray("item_berries", "item_heal_potion", "item_log", "item_stone", "scn_berry_bush", "scn_chunk_component", "scn_drop", "scn_inv_equipment", "scn_inv_item", "scn_main_menu", "scn_player", "scn_rock", "scn_tooltip", "scn_trash_popup", "scn_tree", "scn_wolf", "sfx_attack", "sfx_heal", "sfx_hurt", "tex_item_default"), [ExtResource("1_hecuv"), ExtResource("1_88ctp"), ExtResource("1_gtaw6"), ExtResource("2_615eh"), ExtResource("5_q6uey"), ExtResource("3_d58k3"), ExtResource("5_0yq0s"), ExtResource("8_4jc03"), ExtResource("4_w042c"), ExtResource("4_4w54m"), ExtResource("3_ryo3h"), ExtResource("5_0c5il"), ExtResource("11_2ya4e"), ExtResource("12_24ocr"), ExtResource("5_avuny"), ExtResource("9_towpq"), ExtResource("6_n3tir"), ExtResource("12_7fr38"), ExtResource("10_ms4g6"), ExtResource("19_2jpqo")]]
+resources = [PackedStringArray("item_berries", "item_heal_potion", "item_log", "item_stone", "scn_berry_bush", "scn_cave_template1", "scn_cave_template2", "scn_chunk_component", "scn_drop", "scn_inv_equipment", "scn_inv_item", "scn_main_menu", "scn_player", "scn_rock", "scn_test", "scn_tooltip", "scn_trash_popup", "scn_tree", "scn_wolf", "scn_world", "sfx_attack", "sfx_heal", "sfx_hurt", "tex_item_default"), [ExtResource("1_hecuv"), ExtResource("1_88ctp"), ExtResource("1_gtaw6"), ExtResource("2_615eh"), ExtResource("5_q6uey"), ExtResource("6_6125o"), ExtResource("7_ccme2"), ExtResource("3_d58k3"), ExtResource("5_0yq0s"), ExtResource("8_4jc03"), ExtResource("4_w042c"), ExtResource("4_4w54m"), ExtResource("3_ryo3h"), ExtResource("5_0c5il"), ExtResource("13_6r76u"), ExtResource("11_2ya4e"), ExtResource("12_24ocr"), ExtResource("5_avuny"), ExtResource("9_towpq"), ExtResource("17_ggwkf"), ExtResource("6_n3tir"), ExtResource("12_7fr38"), ExtResource("10_ms4g6"), ExtResource("19_2jpqo")]]
 script = ExtResource("1_sqi72")

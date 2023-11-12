@@ -12,3 +12,6 @@ func on_interact() -> void:
 		overlay.visible = false
 		InvSystem.cnt.add_item(Res["item_berries"])
 		InvSystem.update()
+
+func on_died() -> void:
+	queue_free()

@@ -6,8 +6,8 @@ func on_interact() -> void:
 	for child in interface.get_children():
 		child.queue_free()
 
-	var node = Panel.new()
-	node.custom_minimum_size = Vector2(100, 100)
+	var node = preload("res://scenes/ui/inv_container.tscn").instantiate()
+	node.get_node("%Title").text = "Chest"
 	interface.add_child(node)
 
 func on_interactor_exited() -> void:

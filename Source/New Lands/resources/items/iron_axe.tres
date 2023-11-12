@@ -9,5 +9,5 @@ name = "Iron Axe"
 icon = ExtResource("1_coxev")
 weight = 2.0
 tags = PackedStringArray()
-equip_slot = "hand"
-description = "Hand"
+equip_slot = "main_hand"
+description = "Main Hand"

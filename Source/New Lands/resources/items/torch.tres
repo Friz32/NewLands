@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://bfwfx6q8n56of"]
+
+[ext_resource type="PackedScene" uid="uid://cn2re2kyckl4m" path="res://scenes/equipment/torch.tscn" id="1_ne0ky"]
+[ext_resource type="Script" path="res://scripts/inventory/inv_item.gd" id="1_orxo1"]
+
+[resource]
+script = ExtResource("1_orxo1")
+name = "Torch"
+weight = 1.0
+tags = PackedStringArray()
+equip_slot = "off_hand"
+equip_scene = ExtResource("1_ne0ky")
+description = "Off-hand"

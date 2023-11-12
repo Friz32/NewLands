@@ -7,7 +7,7 @@ func on_died() -> void:
 	node.item = Res["item_log"]
 	node.count = 2
 	node.global_position = global_position
-	get_tree().get_first_node_in_group("chunk_manager").add_child(node)
+	get_parent().add_child(node)
 	
 	queue_free()
 

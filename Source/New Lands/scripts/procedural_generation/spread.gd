@@ -1,4 +1,4 @@
-class_name PGenSpread
+class_name ProcGenSpread
 extends RefCounted
 
 const CHUNK_SIZE = Chunks.CHUNK_SIZE_2D
@@ -26,6 +26,26 @@ func generate(x, y) -> PackedScene:
 	)
 	
 	random(root, 5, 12, Res["scn_wolf"])
+	
+	DirAccess.make_dir_absolute("user://saves")
+	DirAccess.make_dir_absolute("user://saves/default")
+	DirAccess.make_dir_absolute("user://saves/default/caves")
+	for i in max(0, randi_range(1, 8)):
+		var position = Vector2(randf() * CHUNK_SIZE, randf() * CHUNK_SIZE)
+		var cave_warp = preload("res://scenes/objects/cave_warp.tscn").instantiate()
+		cave_warp.position = position
+		var gen = ProcGenCave.new()
+		gen.entrance_scene = "res://scenes/world/world.tscn"
+		gen.entrance_global_position = Vector2(x, y) * CHUNK_SIZE + position
+		gen.entrance_parent = "ChunkManager2D"
+		var scene = gen.generate()
+		var path = "user://saves/default/caves/%s.%s.%s.scn" % [x, y, i]
+		ResourceSaver.save(scene, path)
+		cave_warp.scene = path
+		cave_warp.player_position = gen.exit_global_position
+		cave_warp.player_parent = "YSort"
+		root.add_child(cave_warp)
+		cave_warp.owner = root
 	
 	seed(0)
 	

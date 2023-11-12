@@ -21,6 +21,7 @@ extends Node2D
 @onready var neighboring_chunks := $NeighboringChunks
 
 func _draw() -> void:
+#	draw_rect(Rect2(0, 0, chunk_size, chunk_size), Color.RED, false)
 	if Engine.is_editor_hint():
 		draw_rect(Rect2(0, 0, chunk_size, chunk_size), Color.RED, false)
 

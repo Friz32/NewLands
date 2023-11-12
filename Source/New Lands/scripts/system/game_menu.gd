@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+@onready var create_server_button: BaseButton = %CreateServer
+
 func _ready():
 	visible = false
 
@@ -18,13 +20,19 @@ func on_return_to_game_pressed():
 	get_tree().paused = false
 
 func on_quit_pressed():
-	get_tree().get_first_node_in_group("chunk_manager").unload_all_chunks()
+	var manager = get_tree().get_first_node_in_group("chunk_manager")
+	if manager:
+		manager.unload_all_chunks()
+	
 	get_tree().quit()
 
 func on_main_menu_pressed():
 	get_tree().paused = false
-	get_tree().get_first_node_in_group("chunk_manager").unload_all_chunks()
+	var manager = get_tree().get_first_node_in_group("chunk_manager")
+	if manager:
+		manager.unload_all_chunks()
 	get_tree().change_scene_to_packed(Res["scn_main_menu"])
 
 func on_create_server_pressed() -> void:
 	Networking.create_server()
+	create_server_button.disabled = true

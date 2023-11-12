@@ -1,137 +1,142 @@
-[gd_scene load_steps=24 format=3 uid="uid://6nhd6mhc8dsh"]
+[gd_scene load_steps=22 format=3 uid="uid://tx83k86mctxu"]
 
-[ext_resource type="Script" path="res://scripts/misc/test.gd" id="1_lvjaf"]
-[ext_resource type="PackedScene" uid="uid://bwy2j6k4jtkvi" path="res://scenes/system/player.tscn" id="1_yoh2i"]
-[ext_resource type="PackedScene" uid="uid://cehc6ermlqstx" path="res://scenes/system/day_night_cycle.tscn" id="2_qffo5"]
-[ext_resource type="PackedScene" uid="uid://x5j38lwk04ij" path="res://scenes/system/chunk_manager_2d.tscn" id="3_11eq3"]
-[ext_resource type="Resource" uid="uid://w6mvhdgj33y7" path="res://resources/items/iron_pickaxe.tres" id="4_v6ot7"]
-[ext_resource type="Resource" uid="uid://dy1ep00vb05dk" path="res://resources/items/iron_ore.tres" id="5_e125x"]
-[ext_resource type="PackedScene" uid="uid://vu26sout4mux" path="res://scenes/objects/drop.tscn" id="6_dux1d"]
-[ext_resource type="Texture2D" uid="uid://dn0u50nk6nady" path="res://textures/items/materials/spr_ItemIcon_OreIron_0.png" id="7_ekwam"]
-[ext_resource type="PackedScene" uid="uid://c3b60gjgqiomn" path="res://scenes/objects/campfire.tscn" id="8_l32m1"]
-[ext_resource type="Script" path="res://scripts/inventory/inv_item.gd" id="8_uscks"]
-[ext_resource type="PackedScene" uid="uid://bj1c6y46dqaw1" path="res://scenes/objects/chest.tscn" id="9_hask6"]
-[ext_resource type="FastNoiseLite" uid="uid://b2qxh4fwreulj" path="res://resources/misc/noise_trees.tres" id="10_dlp5k"]
-[ext_resource type="FastNoiseLite" uid="uid://buiwmm73ow5ep" path="res://resources/misc/noise_rocks.tres" id="11_6vmi5"]
-[ext_resource type="FastNoiseLite" uid="uid://13yc2ds1sks2" path="res://resources/misc/noise_bushes.tres" id="12_c55dr"]
+[ext_resource type="Script" path="res://scripts/world/test.gd" id="1_4hxes"]
+[ext_resource type="FastNoiseLite" uid="uid://b2qxh4fwreulj" path="res://resources/misc/noise_trees.tres" id="1_dvmmy"]
+[ext_resource type="FastNoiseLite" uid="uid://buiwmm73ow5ep" path="res://resources/misc/noise_rocks.tres" id="2_k1ihn"]
+[ext_resource type="FastNoiseLite" uid="uid://13yc2ds1sks2" path="res://resources/misc/noise_bushes.tres" id="3_c6esh"]
+[ext_resource type="PackedScene" uid="uid://vu26sout4mux" path="res://scenes/objects/drop.tscn" id="4_olj1q"]
+[ext_resource type="Resource" uid="uid://w6mvhdgj33y7" path="res://resources/items/iron_pickaxe.tres" id="5_g6akc"]
+[ext_resource type="Resource" uid="uid://dy1ep00vb05dk" path="res://resources/items/iron_ore.tres" id="6_2m64k"]
+[ext_resource type="Texture2D" uid="uid://dn0u50nk6nady" path="res://textures/items/materials/spr_ItemIcon_OreIron_0.png" id="7_wypvy"]
+[ext_resource type="Script" path="res://scripts/inventory/inv_item.gd" id="8_0nehu"]
+[ext_resource type="Resource" uid="uid://bfwfx6q8n56of" path="res://resources/items/torch.tres" id="9_hoi7n"]
+[ext_resource type="PackedScene" uid="uid://bj1c6y46dqaw1" path="res://scenes/objects/chest.tscn" id="11_eoo4i"]
+[ext_resource type="PackedScene" uid="uid://cxwfyoyh1pl84" path="res://scenes/objects/tree.tscn" id="11_ko8k6"]
+[ext_resource type="PackedScene" uid="uid://c3b60gjgqiomn" path="res://scenes/objects/campfire.tscn" id="12_yejsy"]
+[ext_resource type="PackedScene" uid="uid://dg2x8mol62cj0" path="res://scenes/objects/berry_bush.tscn" id="15_81mhq"]
+[ext_resource type="PackedScene" uid="uid://dfc7oadivbc11" path="res://scenes/objects/rock.tscn" id="16_6isrb"]
+[ext_resource type="PackedScene" uid="uid://bgydilygxgwam" path="res://scenes/objects/cave_warp.tscn" id="17_rx1cn"]
 
-[sub_resource type="Resource" id="Resource_37m2x"]
-script = ExtResource("8_uscks")
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rb452"]
+noise = ExtResource("1_dvmmy")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c3bif"]
+noise = ExtResource("2_k1ihn")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1wqud"]
+noise = ExtResource("3_c6esh")
+
+[sub_resource type="Resource" id="Resource_fo5un"]
+script = ExtResource("8_0nehu")
 name = "Diamond Ore"
-icon = ExtResource("7_ekwam")
+icon = ExtResource("7_wypvy")
 weight = 0.0
 tags = PackedStringArray()
 equip_slot = "artifact"
 description = "Крутой артефакт"
 
-[sub_resource type="Resource" id="Resource_bxjtk"]
-script = ExtResource("8_uscks")
+[sub_resource type="Resource" id="Resource_61igx"]
+script = ExtResource("8_0nehu")
 name = "Diamond Ore 2"
-icon = ExtResource("7_ekwam")
+icon = ExtResource("7_wypvy")
 weight = 0.0
 tags = PackedStringArray()
 equip_slot = "artifact"
 description = "Крутой артефакт"
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8oueb"]
-noise = ExtResource("10_dlp5k")
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8o2nl"]
-noise = ExtResource("11_6vmi5")
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0u8sn"]
-noise = ExtResource("12_c55dr")
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pljo3"]
-normal = Vector2(0, 1)
-distance = 400.0
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_205mu"]
-distance = 400.0
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0j2uj"]
-distance = 400.0
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_d6ixe"]
-distance = 400.0
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_lvjaf")
-
-[node name="DayNightCycle" parent="." instance=ExtResource("2_qffo5")]
+script = ExtResource("1_4hxes")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-scale = Vector2(10000, 10000)
 color = Color(0.215686, 0.345098, 0.137255, 1)
-polygon = PackedVector2Array(0, 0, 1, 0, 1, 1, 0, 1)
+polygon = PackedVector2Array(-593, -518, 1851, -516, 1860, 1541, -690, 1545)
 metadata/_edit_lock_ = true
 
-[node name="ChunkManager2D" parent="." instance=ExtResource("3_11eq3")]
-world = "user://world"
-
-[node name="Drop" parent="ChunkManager2D" instance=ExtResource("6_dux1d")]
-position = Vector2(877, 681)
-item = ExtResource("4_v6ot7")
-
-[node name="Drop2" parent="ChunkManager2D" instance=ExtResource("6_dux1d")]
-position = Vector2(898, 681)
-item = ExtResource("5_e125x")
-count = 3
-
-[node name="Drop3" parent="ChunkManager2D" instance=ExtResource("6_dux1d")]
-position = Vector2(921, 682)
-item = SubResource("Resource_37m2x")
-
-[node name="Drop5" parent="ChunkManager2D" instance=ExtResource("6_dux1d")]
-position = Vector2(921, 705)
-item = SubResource("Resource_37m2x")
-
-[node name="Drop4" parent="ChunkManager2D" instance=ExtResource("6_dux1d")]
-position = Vector2(942, 681)
-item = SubResource("Resource_bxjtk")
-
-[node name="Player" parent="ChunkManager2D" instance=ExtResource("1_yoh2i")]
-position = Vector2(962, 647)
-
-[node name="Chest" parent="ChunkManager2D" instance=ExtResource("9_hask6")]
-position = Vector2(934, 567)
-
-[node name="Campfire" parent="ChunkManager2D" instance=ExtResource("8_l32m1")]
-position = Vector2(1057, 619)
-
 [node name="Trees" type="Sprite2D" parent="."]
-position = Vector2(88, -170)
+position = Vector2(84.2, -594.8)
 scale = Vector2(0.2, 0.2)
-texture = SubResource("NoiseTexture2D_8oueb")
+texture = SubResource("NoiseTexture2D_rb452")
 
 [node name="Rocks" type="Sprite2D" parent="."]
-position = Vector2(225, -166)
+position = Vector2(221.2, -590.8)
 scale = Vector2(0.2, 0.2)
-texture = SubResource("NoiseTexture2D_8o2nl")
+texture = SubResource("NoiseTexture2D_c3bif")
 
 [node name="Bushes" type="Sprite2D" parent="."]
-position = Vector2(365, -166)
+position = Vector2(361.2, -590.8)
 scale = Vector2(0.2, 0.2)
-texture = SubResource("NoiseTexture2D_0u8sn")
+texture = SubResource("NoiseTexture2D_1wqud")
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+[node name="Drop" parent="." instance=ExtResource("4_olj1q")]
+position = Vector2(27, 199)
+item = ExtResource("5_g6akc")
 
-[node name="WorldBorder" type="StaticBody2D" parent="."]
+[node name="Drop2" parent="." instance=ExtResource("4_olj1q")]
+position = Vector2(48, 199)
+item = ExtResource("6_2m64k")
+count = 3
 
-[node name="North" type="CollisionShape2D" parent="WorldBorder"]
-position = Vector2(5000, 0)
-shape = SubResource("WorldBoundaryShape2D_pljo3")
+[node name="Drop3" parent="." instance=ExtResource("4_olj1q")]
+position = Vector2(71, 200)
+item = SubResource("Resource_fo5un")
 
-[node name="West" type="CollisionShape2D" parent="WorldBorder"]
-position = Vector2(0, 5000)
-rotation = 1.57079
-shape = SubResource("WorldBoundaryShape2D_205mu")
+[node name="Drop5" parent="." instance=ExtResource("4_olj1q")]
+position = Vector2(71, 223)
+item = SubResource("Resource_fo5un")
 
-[node name="East" type="CollisionShape2D" parent="WorldBorder"]
-position = Vector2(10000, 5000)
-rotation = -1.57079
-shape = SubResource("WorldBoundaryShape2D_0j2uj")
+[node name="Drop4" parent="." instance=ExtResource("4_olj1q")]
+position = Vector2(92, 199)
+item = SubResource("Resource_61igx")
 
-[node name="South" type="CollisionShape2D" parent="WorldBorder"]
-position = Vector2(5000, 10000)
-shape = SubResource("WorldBoundaryShape2D_d6ixe")
+[node name="Drop6" parent="." instance=ExtResource("4_olj1q")]
+position = Vector2(114, 198)
+item = ExtResource("9_hoi7n")
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(-740, -479)
+points = PackedVector2Array(1131, 702, 1233, 775, 1385, 833, 1585, 817, 1733, 766, 1837, 652, 1936, 511, 2033, 406, 2156, 355, 2276, 339)
+width = 64.0
+default_color = Color(0.721569, 0.615686, 0.34902, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="YSort" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="CaveWarp" parent="YSort" instance=ExtResource("17_rx1cn")]
+position = Vector2(121, 348)
+
+[node name="Tree" parent="YSort" instance=ExtResource("11_ko8k6")]
+position = Vector2(733, 258)
+
+[node name="Tree2" parent="YSort" instance=ExtResource("11_ko8k6")]
+position = Vector2(654, 277)
+
+[node name="Tree3" parent="YSort" instance=ExtResource("11_ko8k6")]
+position = Vector2(616, 220)
+
+[node name="Player" parent="YSort" instance_placeholder="res://scenes/system/player.tscn"]
+position = Vector2(193, 209)
+
+[node name="Chest" parent="YSort" instance=ExtResource("11_eoo4i")]
+position = Vector2(270, 204)
+
+[node name="Campfire" parent="YSort" instance=ExtResource("12_yejsy")]
+position = Vector2(238, 279)
+
+[node name="BerryBush" parent="YSort" instance=ExtResource("15_81mhq")]
+position = Vector2(552.246, 240.714)
+
+[node name="BerryBush2" parent="YSort" instance=ExtResource("15_81mhq")]
+position = Vector2(526, 223)
+berries = false
+
+[node name="Rock" parent="YSort" instance=ExtResource("16_6isrb")]
+position = Vector2(776, 437)
+
+[node name="Rock2" parent="YSort" instance=ExtResource("16_6isrb")]
+position = Vector2(806, 453)
+
+[node name="Rock3" parent="YSort" instance=ExtResource("16_6isrb")]
+position = Vector2(728, 461)
