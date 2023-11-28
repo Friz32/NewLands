@@ -60,6 +60,7 @@ func on_trash_pressed() -> void:
 		var player = get_tree().get_first_node_in_group("player")
 		node.global_position = player.global_position
 		player.get_parent().add_child(node)
+		node.owner = get_tree().current_scene
 
 func on_trash_popup_ok(count):
 	InvSystem.cnt.remove_item(item, count)
@@ -71,6 +72,7 @@ func on_trash_popup_ok(count):
 	var player = get_tree().get_first_node_in_group("player")
 	node.global_position = player.global_position
 	player.get_parent().add_child(node)
+	node.owner = get_tree().current_scene
 
 func on_equip_pressed() -> void:
 	if !InvSystem.equipment.has(item.equip_slot):

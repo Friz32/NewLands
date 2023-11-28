@@ -10,7 +10,7 @@ func _ready() -> void:
 
 func warp(scene, player_position, player_parent):
 	var save = SaveSystem.save_data
-	save.player_scene = scene
+	save.player_scene = scene.resource_path
 	save.player_position = player_position
 	save.player_parent = player_parent
 	

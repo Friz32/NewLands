@@ -9,7 +9,9 @@ func _ready() -> void:
 #	cave_warp.scene = s
 #	cave_warp.player_position = gen.exit_global_position
 	
-	SaveSystem.save_data.player_scene = Res["scn_test"]
+	SaveSystem.save_data.player_scene = "res://scenes/world/test.tscn"
+	SaveSystem.save_data.player_position = Vector2(100, 100)
+	SaveSystem.save_data.player_parent = "YSort"
 	
 	var cnt = InvSystem.cnt
 	cnt.add_item(Res["item_heal_potion"], 10)

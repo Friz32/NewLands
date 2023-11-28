@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3pbltakiltxc"]
+[gd_scene load_steps=6 format=3 uid="uid://d3pbltakiltxc"]
 
 [ext_resource type="Script" path="res://assets/ui/scripts/character_menu.gd" id="1_8c8jh"]
+[ext_resource type="PackedScene" uid="uid://va52omukclkc" path="res://scenes/ui/equipment.tscn" id="2_0ehnt"]
 [ext_resource type="PackedScene" uid="uid://y0s4b7e445cv" path="res://scenes/ui/inventory.tscn" id="2_ue50l"]
+[ext_resource type="PackedScene" uid="uid://ccd3qh4p42p15" path="res://scenes/ui/crafting.tscn" id="3_nkitb"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xfonc"]
 
@@ -41,6 +43,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="Button2" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 text = "Q <"
@@ -64,14 +67,14 @@ size_flags_horizontal = 3
 focus_mode = 0
 text = "Map"
 
-[node name="Button3" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Journal" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 text = "Journal"
 
-[node name="Button4" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Quests" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -79,6 +82,7 @@ focus_mode = 0
 text = "Quests"
 
 [node name="Button" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 text = "> E"
@@ -97,35 +101,43 @@ layout_mode = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/TabContainer/Inventory"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
-[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/TabContainer/Inventory/VBoxContainer"]
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/TabContainer/Inventory"]
 layout_mode = 2
+offset_right = 1248.0
+offset_bottom = 26.0
 text = "Inventory"
 horizontal_alignment = 1
 
-[node name="Inventory" parent="Control/MarginContainer/VBoxContainer/TabContainer/Inventory" instance=ExtResource("2_ue50l")]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/TabContainer/Inventory"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_top = -150.0
+offset_right = 250.0
 offset_bottom = 150.0
 grow_vertical = 2
+
+[node name="Equipment" parent="Control/MarginContainer/VBoxContainer/TabContainer/Inventory/VBoxContainer" instance=ExtResource("2_0ehnt")]
+layout_mode = 2
+
+[node name="Inventory" parent="Control/MarginContainer/VBoxContainer/TabContainer/Inventory/VBoxContainer" instance=ExtResource("2_ue50l")]
+layout_mode = 2
 size_flags_vertical = 6
 
 [node name="Crafting" type="Control" parent="Control/MarginContainer/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/TabContainer/Crafting"]
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/TabContainer/Crafting"]
+layout_mode = 2
+offset_right = 1248.0
+offset_bottom = 26.0
+text = "Crafting
+"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Control/MarginContainer/VBoxContainer/TabContainer/Crafting"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -133,11 +145,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/TabContainer/Crafting/VBoxContainer"]
+[node name="Crafting" parent="Control/MarginContainer/VBoxContainer/TabContainer/Crafting/CenterContainer" instance=ExtResource("3_nkitb")]
 layout_mode = 2
-text = "Crafting
-"
-horizontal_alignment = 1
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/Inventory" to="." method="on_inventory_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/Crafting" to="." method="on_crafting_pressed"]

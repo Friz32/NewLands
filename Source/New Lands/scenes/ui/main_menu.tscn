@@ -4,10 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://yilous06kvou" path="res://textures/misc/main_menu_background.svg" id="2_7hodb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0jjvh"]
-font_color = Color(0.34902, 0.34902, 0.34902, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_fo0pb"]
-font_size = 86
+font_size = 56
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -18,15 +17,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7moer")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -35,6 +25,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_7hodb")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.384314)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -62,11 +61,6 @@ anchor_right = 1.0
 anchor_bottom = 0.334877
 grow_horizontal = 2
 
-[node name="Label" type="Label" parent="CenterContainer2"]
-layout_mode = 2
-text = "New Lands"
-label_settings = SubResource("LabelSettings_fo0pb")
-
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -75,41 +69,134 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
 
-[node name="LoadGame" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer"]
 layout_mode = 2
-text = "Load game"
+text = "New Lands"
+label_settings = SubResource("LabelSettings_fo0pb")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 
-[node name="NewGame" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="LoadGame" type="Button" parent="MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Load Game"
+
+[node name="NewGame" type="Button" parent="MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "New game"
+text = "New Game"
 
-[node name="Seed" type="LineEdit" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-placeholder_text = "Seed"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="ConnectToServer" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+[node name="ConnectToServer" type="Button" parent="MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+disabled = true
 text = "Connect to server"
 
-[node name="IP" type="LineEdit" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+[node name="Quit" type="Button" parent="MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="SubMenu" type="TabContainer" parent="MarginContainer2/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+tabs_visible = false
+
+[node name="NewGame" type="Control" parent="MarginContainer2/VBoxContainer/HBoxContainer/SubMenu"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer2/VBoxContainer/HBoxContainer/SubMenu/NewGame"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer/HBoxContainer/SubMenu/NewGame/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/VBoxContainer/HBoxContainer/SubMenu/NewGame/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer/HBoxContainer/SubMenu/NewGame/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "New Game"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer/HBoxContainer/SubMenu/NewGame/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer/HBoxContainer/SubMenu/NewGame/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Seed"
+vertical_alignment = 1
+
+[node name="Seed" type="LineEdit" parent="MarginContainer2/VBoxContainer/HBoxContainer/SubMenu/NewGame/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Create" type="Button" parent="MarginContainer2/VBoxContainer/HBoxContainer/SubMenu/NewGame/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Create"
+
+[node name="ConnectToServer" type="Control" parent="MarginContainer2/VBoxContainer/HBoxContainer/SubMenu"]
+visible = false
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer2/VBoxContainer/HBoxContainer/SubMenu/ConnectToServer"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer/HBoxContainer/SubMenu/ConnectToServer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/VBoxContainer/HBoxContainer/SubMenu/ConnectToServer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer/HBoxContainer/SubMenu/ConnectToServer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Connect to server"
+
+[node name="IP" type="LineEdit" parent="MarginContainer2/VBoxContainer/HBoxContainer/SubMenu/ConnectToServer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 placeholder_text = "IP"
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/LoadGame" to="." method="on_load_game_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/NewGame" to="." method="on_new_game_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/ConnectToServer" to="." method="on_connect_to_server_pressed"]
+[node name="Connect" type="Button" parent="MarginContainer2/VBoxContainer/HBoxContainer/SubMenu/ConnectToServer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Connect"
+
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/LoadGame" to="." method="on_load_game_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/NewGame" to="." method="on_new_game_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/ConnectToServer" to="." method="on_connect_to_server_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/Quit" to="." method="on_quit_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/HBoxContainer/SubMenu/NewGame/PanelContainer/MarginContainer/VBoxContainer/Create" to="." method="on_create_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/HBoxContainer/SubMenu/ConnectToServer/PanelContainer/MarginContainer/VBoxContainer/Connect" to="." method="on_connect_pressed"]

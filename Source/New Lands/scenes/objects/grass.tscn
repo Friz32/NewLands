@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjikv6b38tggi"]
+
+[ext_resource type="Script" path="res://scripts/objects/grass.gd" id="1_0ckcm"]
+[ext_resource type="Texture2D" uid="uid://i8hevx3qrclo" path="res://textures/objects/grass.svg" id="1_io7ny"]
+[ext_resource type="Material" uid="uid://b2rowh7kcs01f" path="res://resources/materials/grass.tres" id="1_juk42"]
+
+[node name="Grass" type="Node2D"]
+script = ExtResource("1_0ckcm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = ExtResource("1_juk42")
+position = Vector2(0, -16)
+texture = ExtResource("1_io7ny")

@@ -35,7 +35,7 @@ func _unhandled_input(event):
 func _process(delta):
 	info.text = "FPS: %s" % Engine.get_frames_per_second()
 	
-	if get_tree().current_scene != previous_scene && SaveSystem.save_data.player_scene && SaveSystem.save_data.player_scene.resource_path == get_tree().current_scene.scene_file_path:
+	if get_tree().current_scene != previous_scene && SaveSystem.save_data.player_scene == get_tree().current_scene.scene_file_path:
 		var player = Res["scn_player"].instantiate()
 		player.position = SaveSystem.save_data.player_position
 		# Bug: нет проверки наличия player_parent в сцене

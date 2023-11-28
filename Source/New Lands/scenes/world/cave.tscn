@@ -1,16 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://dlhbnixokmenl"]
+[gd_scene load_steps=7 format=3 uid="uid://dlhbnixokmenl"]
+
+[ext_resource type="Script" path="res://scripts/procedural_generation/cave_template_component.gd" id="1_j0vou"]
+[ext_resource type="PackedScene" uid="uid://bwy2j6k4jtkvi" path="res://scenes/system/player.tscn" id="2_2j33m"]
+[ext_resource type="PackedScene" uid="uid://cxg1e8ry345ck" path="res://scenes/objects/iron_ore.tscn" id="2_44f55"]
+[ext_resource type="PackedScene" uid="uid://dfc7oadivbc11" path="res://scenes/objects/rock.tscn" id="4_8iobk"]
 
 [sub_resource type="GDScript" id="GDScript_ej45w"]
 script/source = "extends Node2D
 
-func _ready() -> void:
-	var gen = ProcGenCave.new()
-	var scene = gen.generate()
+#func _ready() -> void:
+#	SaveSystem.save_data.player_scene = preload(\"res://scenes/world/cave.tscn\")
+	
+#	var gen = ProcGenCave.new()
+#	var scene = gen.generate()
 #	ResourceSaver.save(scene, \"user://test.tscn\")
 #	get_tree().change_scene_to_packed(scene)
-	var node = scene.instantiate()
-	add_child(node)
-	move_child(node, 0)
+#	var node = scene.instantiate()
+#	add_child(node)
+#	move_child(node, 0)
 #	print(node.get_children())
 #	$Player.global_position = node.get_node(\"CaveTemplate1/Exit\").get_child(randi() % 3).global_position
 	
@@ -22,5 +29,50 @@ func _ready() -> void:
 #	add_child(player)
 "
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_iv76d"]
+cull_mode = 2
+polygon = PackedVector2Array(-853, -1135, 2235, -1101, 2167, 2146, -944, 2084, -853, -1055, 405, -153, 308, -72, 301, 29, 358, 55, 422, 55, 475, 120, 513, 171, 492, 218, 411, 230, 339, 268, 335, 340, 348, 396, 416, 434, 437, 480, 416, 506, 352, 523, 280, 493, 288, 438, 250, 400, 174, 425, 161, 493, 178, 629, 263, 735, 407, 769, 530, 730, 538, 616, 585, 620, 615, 688, 600, 758, 507, 841, 482, 923, 571, 962, 692, 916, 688, 820, 703, 745, 671, 599, 567, 531, 535, 385, 542, 267, 589, 214, 649, 242, 671, 299, 692, 392, 763, 420, 813, 413, 774, 349, 724, 321, 703, 242, 667, 178, 582, 139, 503, 71, 476, 11, 526, -39, 501, -132, 405, -153, -170, -239)
+
 [node name="Node2D" type="Node2D"]
 script = SubResource("GDScript_ej45w")
+
+[node name="Ground" type="Polygon2D" parent="."]
+color = Color(0.188235, 0.188235, 0.188235, 1)
+polygon = PackedVector2Array(-870, -1151, 2247, -1106, 2173, 2107, -933, 2096)
+
+[node name="Walls" type="Polygon2D" parent="."]
+color = Color(0.0901961, 0.0901961, 0.0901961, 1)
+polygon = PackedVector2Array(-853, -1135, 2235, -1101, 2167, 2146, -944, 2084, -853, -1055, 405, -153, 308, -72, 301, 29, 358, 55, 422, 55, 475, 120, 513, 171, 492, 218, 411, 230, 339, 268, 335, 340, 348, 396, 416, 434, 437, 480, 416, 506, 352, 523, 280, 493, 288, 438, 250, 400, 174, 425, 161, 493, 178, 629, 263, 735, 407, 769, 530, 730, 538, 616, 585, 620, 615, 688, 600, 758, 507, 841, 482, 923, 571, 962, 692, 916, 688, 820, 703, 745, 671, 599, 567, 531, 535, 385, 542, 267, 589, 214, 649, 242, 671, 299, 692, 392, 763, 420, 813, 413, 774, 349, 724, 321, 703, 242, 667, 178, 582, 139, 503, 71, 476, 11, 526, -39, 501, -132, 405, -153, -170, -239)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+visible = false
+polygon = PackedVector2Array(-853, -1135, 2235, -1101, 2167, 2146, -944, 2084, -853, -1055, 405, -153, 308, -72, 301, 29, 358, 55, 422, 55, 475, 120, 513, 171, 492, 218, 411, 230, 339, 268, 335, 340, 348, 396, 416, 434, 437, 480, 416, 506, 352, 523, 280, 493, 288, 438, 250, 400, 174, 425, 161, 493, 178, 629, 263, 735, 407, 769, 530, 730, 538, 616, 585, 620, 615, 688, 600, 758, 507, 841, 482, 923, 571, 962, 692, 916, 688, 820, 703, 745, 671, 599, 567, 531, 535, 385, 542, 267, 589, 214, 649, 242, 671, 299, 692, 392, 763, 420, 813, 413, 774, 349, 724, 321, 703, 242, 667, 178, 582, 139, 503, 71, 476, 11, 526, -39, 501, -132, 405, -153, -170, -239)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_iv76d")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.152941, 0.152941, 0.152941, 1)
+
+[node name="CaveTemplateComponent" type="Node" parent="." node_paths=PackedStringArray("walls_polygon", "walls_collision_polygon", "walls_light_occluder")]
+script = ExtResource("1_j0vou")
+walls_polygon = NodePath("../Walls")
+walls_collision_polygon = NodePath("../StaticBody2D/CollisionPolygon2D")
+walls_light_occluder = NodePath("../LightOccluder2D")
+
+[node name="YSort" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="IronOre" parent="YSort" instance=ExtResource("2_44f55")]
+position = Vector2(425, 263)
+
+[node name="IronOre2" parent="YSort" instance=ExtResource("2_44f55")]
+position = Vector2(396, 287)
+
+[node name="Player" parent="YSort" instance=ExtResource("2_2j33m")]
+position = Vector2(421, 340)
+
+[node name="Rock" parent="YSort" instance=ExtResource("4_8iobk")]
+position = Vector2(455, 278)

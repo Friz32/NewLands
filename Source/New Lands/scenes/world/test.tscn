@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://tx83k86mctxu"]
+[gd_scene load_steps=27 format=3 uid="uid://tx83k86mctxu"]
 
 [ext_resource type="Script" path="res://scripts/world/test.gd" id="1_4hxes"]
 [ext_resource type="FastNoiseLite" uid="uid://b2qxh4fwreulj" path="res://resources/misc/noise_trees.tres" id="1_dvmmy"]
@@ -10,11 +10,13 @@
 [ext_resource type="Texture2D" uid="uid://dn0u50nk6nady" path="res://textures/items/materials/spr_ItemIcon_OreIron_0.png" id="7_wypvy"]
 [ext_resource type="Script" path="res://scripts/inventory/inv_item.gd" id="8_0nehu"]
 [ext_resource type="Resource" uid="uid://bfwfx6q8n56of" path="res://resources/items/torch.tres" id="9_hoi7n"]
+[ext_resource type="PackedScene" uid="uid://bjikv6b38tggi" path="res://scenes/objects/grass.tscn" id="11_afcrq"]
 [ext_resource type="PackedScene" uid="uid://bj1c6y46dqaw1" path="res://scenes/objects/chest.tscn" id="11_eoo4i"]
 [ext_resource type="PackedScene" uid="uid://cxwfyoyh1pl84" path="res://scenes/objects/tree.tscn" id="11_ko8k6"]
 [ext_resource type="PackedScene" uid="uid://c3b60gjgqiomn" path="res://scenes/objects/campfire.tscn" id="12_yejsy"]
 [ext_resource type="PackedScene" uid="uid://dg2x8mol62cj0" path="res://scenes/objects/berry_bush.tscn" id="15_81mhq"]
 [ext_resource type="PackedScene" uid="uid://dfc7oadivbc11" path="res://scenes/objects/rock.tscn" id="16_6isrb"]
+[ext_resource type="Texture2D" uid="uid://b4vqh6ua2ek66" path="res://icon.png" id="17_oprge"]
 [ext_resource type="PackedScene" uid="uid://bgydilygxgwam" path="res://scenes/objects/cave_warp.tscn" id="17_rx1cn"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rb452"]
@@ -43,6 +45,25 @@ weight = 0.0
 tags = PackedStringArray()
 equip_slot = "artifact"
 description = "Крутой артефакт"
+
+[sub_resource type="QuadMesh" id="QuadMesh_1ff8u"]
+lightmap_size_hint = Vector2i(7, 7)
+size = Vector2(64, 64)
+
+[sub_resource type="MultiMesh" id="MultiMesh_gavix"]
+instance_count = 5
+mesh = SubResource("QuadMesh_1ff8u")
+buffer = PackedFloat32Array(0.103529, 1, 0.988806, 0.985646, 266, 28, 0.103529, 0.103529, 0.103529, 1, 0.977612, 1, 138, 28, 0.103529, 0.103529, 0.103529, 1, 0.0223881, 1, 136.5, 27.5981, 0.103529, 0.103529, 0.103529, 1, 0.011194, 0.985646, 135.402, 26.5, 0.103529, 0.103529, 0.103529, 1, 0.00299938, 0.946429, 135, 25, 0.103529, 0.103529)
+
+[sub_resource type="GDScript" id="GDScript_pt7q7"]
+script/source = "extends MultiMeshInstance2D
+
+func _ready():
+	for i in multimesh.instance_count:
+		var angle = PI
+		var pos = Vector2(i * 64, 0)
+		multimesh.set_instance_transform_2d(i, Transform2D(angle, Vector2(-1, 1), 0, pos))
+"
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_4hxes")
@@ -104,6 +125,36 @@ end_cap_mode = 2
 [node name="YSort" type="Node2D" parent="."]
 y_sort_enabled = true
 
+[node name="Grass" type="Node2D" parent="YSort"]
+y_sort_enabled = true
+
+[node name="Grass" parent="YSort/Grass" instance=ExtResource("11_afcrq")]
+position = Vector2(538, 247)
+
+[node name="Grass2" parent="YSort/Grass" instance=ExtResource("11_afcrq")]
+position = Vector2(523, 226)
+
+[node name="Grass3" parent="YSort/Grass" instance=ExtResource("11_afcrq")]
+position = Vector2(526, 251)
+
+[node name="Grass4" parent="YSort/Grass" instance=ExtResource("11_afcrq")]
+position = Vector2(496, 228)
+
+[node name="Grass5" parent="YSort/Grass" instance=ExtResource("11_afcrq")]
+position = Vector2(639, 279)
+
+[node name="Grass6" parent="YSort/Grass" instance=ExtResource("11_afcrq")]
+position = Vector2(670, 264)
+
+[node name="Grass7" parent="YSort/Grass" instance=ExtResource("11_afcrq")]
+position = Vector2(602, 246)
+
+[node name="Grass8" parent="YSort/Grass" instance=ExtResource("11_afcrq")]
+position = Vector2(579, 264)
+
+[node name="Grass9" parent="YSort/Grass" instance=ExtResource("11_afcrq")]
+position = Vector2(611, 309)
+
 [node name="CaveWarp" parent="YSort" instance=ExtResource("17_rx1cn")]
 position = Vector2(121, 348)
 
@@ -115,9 +166,6 @@ position = Vector2(654, 277)
 
 [node name="Tree3" parent="YSort" instance=ExtResource("11_ko8k6")]
 position = Vector2(616, 220)
-
-[node name="Player" parent="YSort" instance_placeholder="res://scenes/system/player.tscn"]
-position = Vector2(193, 209)
 
 [node name="Chest" parent="YSort" instance=ExtResource("11_eoo4i")]
 position = Vector2(270, 204)
@@ -140,3 +188,18 @@ position = Vector2(806, 453)
 
 [node name="Rock3" parent="YSort" instance=ExtResource("16_6isrb")]
 position = Vector2(728, 461)
+
+[node name="MultiMeshInstance2D" type="MultiMeshInstance2D" parent="."]
+visible = false
+position = Vector2(206, 38)
+multimesh = SubResource("MultiMesh_gavix")
+texture = ExtResource("17_oprge")
+script = SubResource("GDScript_pt7q7")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = 289.0
+offset_top = 57.0
+offset_right = 502.0
+offset_bottom = 84.0
+max_value = 30.0
+value = 29.0

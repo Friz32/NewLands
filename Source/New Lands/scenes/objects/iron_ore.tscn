@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://cxg1e8ry345ck"]
+
+[ext_resource type="Texture2D" uid="uid://bnys0ike36gvq" path="res://textures/objects/iron_ore.svg" id="1_fee1j"]
+[ext_resource type="Script" path="res://scripts/objects/iron_ore.gd" id="1_np1ud"]
+[ext_resource type="Texture2D" uid="uid://uqpu4yohbwb6" path="res://textures/objects/iron_ore_overlay.svg" id="2_c1vfk"]
+[ext_resource type="Script" path="res://scripts/components/health_component.gd" id="3_81gi0"]
+[ext_resource type="Script" path="res://scripts/components/hitbox.gd" id="4_1qt5j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lg141"]
+size = Vector2(48, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_em36f"]
+size = Vector2(40, 26)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3iuqu"]
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 98, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 80.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 2.0
+scale_max = 2.0
+color = Color(0.811765, 0.811765, 0.811765, 1)
+
+[node name="IronOre" type="StaticBody2D"]
+script = ExtResource("1_np1ud")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -32)
+texture = ExtResource("1_fee1j")
+
+[node name="Overlay" type="Sprite2D" parent="."]
+position = Vector2(0, -32)
+texture = ExtResource("2_c1vfk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_lg141")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("3_81gi0")
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+visible = false
+position = Vector2(0, -15)
+script = ExtResource("4_1qt5j")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_em36f")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, -18)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_3iuqu")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+
+[connection signal="damaged" from="HealthComponent" to="." method="on_damaged"]
+[connection signal="died" from="HealthComponent" to="." method="on_died"]

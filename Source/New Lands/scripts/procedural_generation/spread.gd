@@ -4,6 +4,7 @@ extends RefCounted
 const CHUNK_SIZE = Chunks.CHUNK_SIZE_2D
 
 var seed := -1
+var path := ""
 
 func generate(x, y) -> PackedScene:
 	var root = Node2D.new()
@@ -13,6 +14,11 @@ func generate(x, y) -> PackedScene:
 	var component = Res["scn_chunk_component"].instantiate()
 	root.add_child(component)
 	component.owner = root
+	
+	var scene_save = SceneSaveComponent.new()
+	scene_save.path = path
+	root.add_child(scene_save)
+	scene_save.owner = root
 	
 	if seed < 0:
 		randomize()
@@ -24,26 +30,37 @@ func generate(x, y) -> PackedScene:
 	spread(x, y, root, 32, preload("uid://13yc2ds1sks2"), 0.6, Res["scn_berry_bush"], 32, func(node):
 		node.berries = randf() < 0.2
 	)
+	spread(x, y, root, 64, preload("uid://dpgnq36fr6ey"), 0.2, Res["scn_grass"], 32)
 	
-	random(root, 5, 12, Res["scn_wolf"])
+	random(root, 3, 8, Res["scn_wolf"])
 	
-	DirAccess.make_dir_absolute("user://saves")
-	DirAccess.make_dir_absolute("user://saves/default")
-	DirAccess.make_dir_absolute("user://saves/default/caves")
+	for i in randf_range(3, 8):
+		var gen = ProcGenBanditCamp.new()
+		gen.owner = root
+		gen.parent = root
+		var node = gen.generate()
+		node.position = Vector2(randf_range(0, CHUNK_SIZE), randf_range(0, CHUNK_SIZE))
+	
+	DirAccess.make_dir_recursive_absolute("user://saves/default/caves")
 	for i in max(0, randi_range(1, 8)):
+		var path = "user://saves/default/caves/%s.%s.%s.scn" % [x, y, i]
 		var position = Vector2(randf() * CHUNK_SIZE, randf() * CHUNK_SIZE)
-		var cave_warp = preload("res://scenes/objects/cave_warp.tscn").instantiate()
-		cave_warp.position = position
+		
 		var gen = ProcGenCave.new()
 		gen.entrance_scene = "res://scenes/world/world.tscn"
 		gen.entrance_global_position = Vector2(x, y) * CHUNK_SIZE + position
 		gen.entrance_parent = "ChunkManager2D"
+		gen.path = path
+		
 		var scene = gen.generate()
-		var path = "user://saves/default/caves/%s.%s.%s.scn" % [x, y, i]
 		ResourceSaver.save(scene, path)
+		
+		var cave_warp = preload("res://scenes/objects/cave_warp.tscn").instantiate()
+		cave_warp.position = position
 		cave_warp.scene = path
 		cave_warp.player_position = gen.exit_global_position
 		cave_warp.player_parent = "YSort"
+		
 		root.add_child(cave_warp)
 		cave_warp.owner = root
 	

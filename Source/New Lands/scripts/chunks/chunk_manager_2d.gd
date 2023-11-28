@@ -48,10 +48,6 @@ func unload_all_chunks():
 		unload_chunk(chunk)
 
 func unload_chunk(pos: Vector2i):
-	var scene = PackedScene.new()
-	scene.pack(loaded_chunks[pos])
-	ResourceSaver.save(scene, "%s/%s.%s.scn" % [world, pos.x, pos.y])
-	
 	loaded_chunks[pos].queue_free()
 	loaded_chunks.erase(pos)
 

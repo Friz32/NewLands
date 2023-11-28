@@ -33,6 +33,7 @@ walls_collision_polygon = NodePath("../CollisionPolygon2D")
 walls_light_occluder = NodePath("../LightOccluder2D")
 
 [node name="Exit" type="Node2D" parent="."]
+visible = false
 
 [node name="Node2D" type="Node2D" parent="Exit"]
 position = Vector2(595, 924)
@@ -42,3 +43,23 @@ position = Vector2(374, 274)
 
 [node name="Node2D3" type="Node2D" parent="Exit"]
 position = Vector2(273, 697)
+
+[node name="Ore" type="Node2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="Ore"]
+position = Vector2(236.488, 416.479)
+
+[node name="Node2D2" type="Node2D" parent="Ore"]
+position = Vector2(400.635, 742.207)
+
+[node name="Node2D3" type="Node2D" parent="Ore"]
+position = Vector2(353.491, 349.345)
+
+[node name="Node2D4" type="Node2D" parent="Ore"]
+position = Vector2(768.802, 394.244)
+
+[node name="Node2D5" type="Node2D" parent="Ore"]
+position = Vector2(604.923, 173.119)
+
+[node name="Node2D6" type="Node2D" parent="Ore"]
+position = Vector2(189.612, 448.122)

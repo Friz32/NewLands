@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://va52omukclkc"]
+
+[ext_resource type="StyleBox" uid="uid://citga5lg6df5w" path="res://resources/misc/panel.tres" id="1_7kdfx"]
+[ext_resource type="Script" path="res://scripts/inventory/equipment.gd" id="2_5slu1"]
+[ext_resource type="StyleBox" uid="uid://d1vjgeqyjb8s3" path="res://resources/style_boxes/panel2.tres" id="2_le4qn"]
+[ext_resource type="PackedScene" uid="uid://duxncdbt43h3t" path="res://scenes/ui/inv_equipment.tscn" id="3_p6kax"]
+
+[node name="Equipment" type="PanelContainer" groups=["equipment"]]
+custom_minimum_size = Vector2(250, 120)
+anchors_preset = -1
+anchor_right = 0.195313
+anchor_bottom = 0.166667
+offset_right = -250.0
+offset_bottom = -120.0
+theme_override_styles/panel = ExtResource("1_7kdfx")
+script = ExtResource("2_5slu1")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Equipment
+"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_le4qn")
+
+[node name="Equipment" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="InvEquipment" parent="MarginContainer/VBoxContainer/ScrollContainer/Equipment" instance=ExtResource("3_p6kax")]
+layout_mode = 2
+
+[node name="InvEquipment2" parent="MarginContainer/VBoxContainer/ScrollContainer/Equipment" instance=ExtResource("3_p6kax")]
+layout_mode = 2
+
+[node name="InvEquipment3" parent="MarginContainer/VBoxContainer/ScrollContainer/Equipment" instance=ExtResource("3_p6kax")]
+layout_mode = 2

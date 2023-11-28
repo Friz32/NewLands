@@ -5,6 +5,7 @@ var entrance_scene := ""
 var entrance_global_position: Vector2
 var entrance_parent: NodePath
 var exit_global_position: Vector2
+var path := ""
 
 func generate() -> PackedScene:
 	var root = Node2D.new()
@@ -20,6 +21,11 @@ func generate() -> PackedScene:
 	root.add_child(ysort)
 	ysort.owner = root
 	
+	var scene_save = SceneSaveComponent.new()
+	scene_save.path = path
+	root.add_child(scene_save)
+	scene_save.owner = root
+	
 	exit_global_position = template.get_node("Exit").get_child(randi() % template.get_node("Exit").get_child_count()).position
 #	exit_global_position = template.get_node("Exit").get_child(randi() % 3).global_position
 	
@@ -30,6 +36,13 @@ func generate() -> PackedScene:
 	warp.position = exit_global_position
 	ysort.add_child(warp)
 	warp.owner = root
+	
+	for point in template.get_node("Ore").get_children():
+		if randf() > 0.5:
+			var iron_ore = preload("res://scenes/objects/iron_ore.tscn").instantiate()
+			iron_ore.position = point.position
+			ysort.add_child(iron_ore)
+			iron_ore.owner = root
 	
 	var scene = PackedScene.new()
 	scene.pack(root)

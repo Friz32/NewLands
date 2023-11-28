@@ -7,4 +7,5 @@ extends StaticBody2D
 @onready var warp: Warp = $Warp
 
 func on_interact() -> void:
-	warp.warp(load(scene), player_position, player_parent)
+	if scene:
+		warp.warp(load(scene), player_position, player_parent)

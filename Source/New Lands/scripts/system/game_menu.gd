@@ -20,17 +20,11 @@ func on_return_to_game_pressed():
 	get_tree().paused = false
 
 func on_quit_pressed():
-	var manager = get_tree().get_first_node_in_group("chunk_manager")
-	if manager:
-		manager.unload_all_chunks()
-	
 	get_tree().quit()
 
 func on_main_menu_pressed():
 	get_tree().paused = false
-	var manager = get_tree().get_first_node_in_group("chunk_manager")
-	if manager:
-		manager.unload_all_chunks()
+	SaveSystem.update_player_data()
 	get_tree().change_scene_to_packed(Res["scn_main_menu"])
 
 func on_create_server_pressed() -> void:

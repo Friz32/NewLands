@@ -1,0 +1,126 @@
+[gd_scene load_steps=9 format=3 uid="uid://ccd3qh4p42p15"]
+
+[ext_resource type="Texture2D" uid="uid://drdo4hkaeidxc" path="res://textures/items/berries.svg" id="1_c36oi"]
+[ext_resource type="StyleBox" uid="uid://citga5lg6df5w" path="res://resources/misc/panel.tres" id="1_v3bf8"]
+[ext_resource type="Texture2D" uid="uid://c7ylwecu3a134" path="res://textures/items/materials/raw_wood.png" id="2_qvvyc"]
+[ext_resource type="StyleBox" uid="uid://d1vjgeqyjb8s3" path="res://resources/style_boxes/panel2.tres" id="3_a2q03"]
+[ext_resource type="Texture2D" uid="uid://ciyicwsfwg2pt" path="res://textures/items/potions/heal_potion.png" id="4_cyhv8"]
+[ext_resource type="Texture2D" uid="uid://wrge64mub13n" path="res://textures/items/spr_ItemIcon_Meat_0.png" id="5_bwbet"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_md22j"]
+font_size = 26
+
+[sub_resource type="LabelSettings" id="LabelSettings_yjkx2"]
+font_size = 14
+font_color = Color(0.615686, 0.615686, 0.615686, 1)
+
+[node name="Crafting" type="PanelContainer"]
+custom_minimum_size = Vector2(600, 400)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = ExtResource("1_v3bf8")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Crafting"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="ItemList" type="ItemList" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/guide_color = Color(0, 0, 0, 0)
+theme_override_font_sizes/font_size = 14
+item_count = 2
+fixed_icon_size = Vector2i(24, 24)
+item_0/text = "Berries"
+item_0/icon = ExtResource("1_c36oi")
+item_1/text = "Log"
+item_1/icon = ExtResource("2_qvvyc")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("3_a2q03")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("1_c36oi")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Berries"
+label_settings = SubResource("LabelSettings_md22j")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Description"
+label_settings = SubResource("LabelSettings_yjkx2")
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Required items:"
+
+[node name="ItemList" type="ItemList" parent="MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/guide_color = Color(0, 0, 0, 0)
+item_count = 2
+fixed_icon_size = Vector2i(16, 16)
+item_0/text = "1 Potion"
+item_0/icon = ExtResource("4_cyhv8")
+item_0/selectable = false
+item_1/text = "5 Meat"
+item_1/icon = ExtResource("5_bwbet")
+item_1/selectable = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 10
+text = "Craft"
+
+[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+min_value = 1.0
+value = 1.0
+select_all_on_focus = true
